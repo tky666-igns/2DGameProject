@@ -44,6 +44,15 @@
     <ClCompile Include="src\game\hitcheck.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\scene.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\scenetitle.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\sceneresult.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\scenegame.h">
@@ -71,6 +80,15 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\game\hitcheck.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\scene.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\scenetitle.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\sceneresult.h">
       <Filter>src\game</Filter>
     </ClInclude>
   </ItemGroup>

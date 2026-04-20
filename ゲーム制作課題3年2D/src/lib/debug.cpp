@@ -12,7 +12,6 @@ void Fps::Init()
 	m_nowTime = 0;
 }
 
-
 // 次のフレーム
 bool Fps::IsNextFrame()
 {
@@ -28,6 +27,7 @@ bool Fps::IsNextFrame()
 	}
 	else return false;
 }
+
 // 実行
 void Fps::Step()
 {
@@ -35,9 +35,7 @@ void Fps::Step()
 	m_prevTime = m_nowTime;
 }
 
-//-------------------------------
-//		FPS表示関数
-//-------------------------------
+//	FPS表示関数
 void Fps::Print(void)
 {
 	//１フレーム進んだはずと判断

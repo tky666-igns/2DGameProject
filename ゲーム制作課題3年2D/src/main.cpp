@@ -21,10 +21,7 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetTransColor(255, 0, 255);	// 透過色指定
 
-	Scene game;
-	Fps fps;
-
-	
+	Scene g_game;
 
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
@@ -36,9 +33,9 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		// 計算処理
 		UpdateKeyInput();
-		game.Step();
+		g_game.Step();
 		// 描画処理
-		game.Draw();
+		g_game.Draw();
 
 		ScreenFlip();
 

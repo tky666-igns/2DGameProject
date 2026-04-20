@@ -12,6 +12,7 @@ private:
 	int m_prevDrawTime;	// 時間描画
 	int m_count;		// カウント用
 
+public:
 	// 初期化
 	void Init();
 	// 次のフレーム
