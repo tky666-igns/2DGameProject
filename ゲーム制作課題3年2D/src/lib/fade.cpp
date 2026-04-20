@@ -1,21 +1,9 @@
 #include <DxLib.h>
 #include "../common.h"
+#include "fade.h"
 
-#define FADE_SPD	(10)	// フェードイン・アウトの速度
 
-enum tagFade{
-	FADE_NON,		// フェード無し
-	FADE_IN,		// フェードイン(徐々に明るくなる)
-	FADE_OUT,		// フェードアウト(徐々に暗くなる)
-	FADE_OUT_WAIT,	// フェードアウト後の真っ暗状態
-};
-
-typedef struct{
-	tagFade m_sate;	// フェードを行うかどうか
-	int		m_cnt;		// フェードの時間カウント
-}FADE_DATA;
-
-FADE_DATA g_fade = { FADE_NON };
+FADE_DATA g_fade;
 
 
 //-------------------------------
