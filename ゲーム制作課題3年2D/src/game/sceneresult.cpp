@@ -16,7 +16,8 @@ int SceneResult::Step() {
 		m_state = LOAD;
 		break;
 	case LOAD:
-		if (m_hndl == -1) {
+		if (m_hndl == -1)
+		{
 			m_hndl = LoadGraph("data/geme/RESULT.png");
 		}
 		RequestFadeIn();
@@ -55,12 +56,11 @@ void SceneResult::Draw() {
 	switch (m_state)
 	{
 	case STARTWAIT:
-		break;
 	case MAIN:
-		DrawFormatString(20, 20, WHITE, "リザルトシーン");
-		DrawRotaGraph((int)(WINDOW_SIZE_X * 0.5f), (int)WINDOW_SIZE_Y * 0.5f, 1.0f, 0.0f, m_hndl, true);
-		break;
 	case ENDWAIT:
+		DrawFormatString(20, 20, WHITE, "リザルトシーン");
+		DrawRotaGraph((int)(WINDOW_SIZE_X * 0.5f), 
+			(int)WINDOW_SIZE_Y * 0.5f, 1.0f, 0.0f, m_hndl, true);
 		break;
 	}
 }

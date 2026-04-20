@@ -3,7 +3,14 @@
 #include "hitcheck.h"
 #include "scenegame.h"
 
-void Scene::Step()
+void Scene::Init() {
+	m_state = SCENEGAME_INIT;
+	m_res = 0;
+}
+
+
+
+int Scene::Step()
 {
 	switch (m_state)
 	{
@@ -28,6 +35,8 @@ void Scene::Step()
 		m_state = SCENEGAME_INIT;
 		break;
 	}
+
+	return 0;
 }
 
 
