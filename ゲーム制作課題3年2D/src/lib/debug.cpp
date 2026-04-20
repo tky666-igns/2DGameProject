@@ -1,36 +1,65 @@
 #include <DxLib.h>
-
-// FPS表示用構造体
-typedef struct{
-	double m_fps;		// 実際のfps
-	int m_nowTime;		// 現在のPC時間
-	int m_prevTime;	// 1秒前のPC時間
-	int m_count;		// カウント用
-}FpsData;
-static FpsData g_fps = { 0.0 };
+#include "debug.h"
 
 
+// 初期化
+void Fps::Init()
+{
+	//基本的に0で初期化
+	m_frameRate = 0.0f;
+	m_count = 0;
+	m_prevTime = m_prevDrawTime = GetNowCount();
+	m_nowTime = 0;
+}
+
+
+// 次のフレーム
+bool Fps::IsNextFrame()
+{
+	//最新の時間を取得し、更新する
+	m_nowTime = GetNowCount();
+	//前回の時間から今回までの差分を計算
+	int difTime = m_nowTime - m_prevTime;
+
+	//前回の時間から指定したフレーム分、時間が経過したかチェック
+	if (difTime >= FRAME_RATE_MILI_SECOND)
+	{
+		return true;
+	}
+	else return false;
+}
+// 実行
+void Fps::Step()
+{
+	//ここまで来たら時間を更新
+	m_prevTime = m_nowTime;
+}
 
 //-------------------------------
 //		FPS表示関数
 //-------------------------------
-void PrintFps(void)
+void Fps::Print(void)
 {
-	// 一定カウントが溜まったら計算開始
-	if (g_fps.m_count == 59)
-	{
-		// 現在時間と1秒前の時間を更新
-		g_fps.m_prevTime = g_fps.m_nowTime;
-		g_fps.m_nowTime = GetNowCount();
-		// FPS計算
-		int time = g_fps.m_nowTime - g_fps.m_prevTime;
-		g_fps.m_fps = 1000.0 / (time / 60.0);
-		// カウントは0に戻す
-		g_fps.m_count = 0;
-	}
-	else g_fps.m_count++;
+	//１フレーム進んだはずと判断
+	m_count++;
+	//前回の時間と今回の時間の差を取得
+	int difTime = m_nowTime - m_prevDrawTime;
 
-	// FPSは常に表示を続ける
-	DrawFormatString(16, 16, GetColor(255, 255, 255),
-		"FPS:%.1lf", g_fps.m_fps);
+	//差異が1秒以上あれば計算開始（1秒に1回フレームレートの表示を更新）
+	if (difTime >= 1000)
+	{
+		//ある程度正常に動いていたら、m_countは60になっているはず
+		float frameCount = (float)(m_count * 1000);
+		//表示するfpsを更新
+		m_frameRate = frameCount / difTime;
+		//カウントは0に初期化
+		m_count = 0;
+		//ひとつ前の時間を更新
+		m_prevDrawTime = m_nowTime;
+	}
+
+	//文字の表示　引数は「横の位置」「縦の位置」「色」「文字」
+	//FPSは常に表示を続ける
+	DrawFormatString(16, 16, GetColor(255, 0, 0), "FPS:%.2f", m_frameRate);
 }
+

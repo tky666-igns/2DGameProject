@@ -1,6 +1,8 @@
 #include <DxLib.h>
 #include "game/scenegame.h"
 #include "lib/input.h"
+#include "lib/debug.h"
+
 
 // プログラムは WinMain から始まります
 int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -20,6 +22,9 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetTransColor(255, 0, 255);	// 透過色指定
 
 	Scene game;
+	Fps fps;
+
+	
 
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
