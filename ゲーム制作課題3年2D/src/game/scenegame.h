@@ -21,7 +21,7 @@ public:
 	void Init();
 	int Step();
 	void Draw();
-	void HitCheck();
+	//void HitCheck();
 };
 
 

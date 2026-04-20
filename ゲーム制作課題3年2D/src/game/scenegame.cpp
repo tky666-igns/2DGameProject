@@ -2,6 +2,9 @@
 #include "player.h"
 #include "hitcheck.h"
 #include "scenegame.h"
+#include "../lib/fade.h"
+
+
 
 void Scene::Init() {
 	m_state = SCENEGAME_INIT;
@@ -22,17 +25,31 @@ int Scene::Step()
 	case SCENEGAME_LOAD:
 		LoadStage();
 		LoadPlayer();
+		RequestFadeIn();
 		m_state = SCENEGAME_MAIN;
+		break;
+	case SCENEGAME_STARTWAIT:
+		if (IsEndFadeIn())
+		{
+			m_state = SCENEGAME_MAIN;
+		}
 		break;
 	case SCENEGAME_MAIN:
 		UpdateStage();
 		UpdatePlayer();
 		//HitCheckPlayerToStage();
 		break;
+	case SCENEGAME_ENDWAIT:
+		if (IsEndFadeOut()) {
+			m_state = SCENEGAME_END;
+		}
+
+		break;
 	case SCENEGAME_END:
 		ExitStage();
 		ExitPlayer();
 		m_state = SCENEGAME_INIT;
+		return m_res;
 		break;
 	}
 
@@ -44,7 +61,10 @@ void Scene::Draw(void)
 {
 	switch (m_state)
 	{
+	case SCENEGAME_STARTWAIT:
 	case SCENEGAME_MAIN:
+	case SCENEGAME_ENDWAIT:
+		DrawFormatString(20, 20, WHITE, "ÉQÅ[ÉÄ");
 		DrawStage();
 		DrawPlayer();
 		break;
