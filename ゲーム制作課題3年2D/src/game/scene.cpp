@@ -6,7 +6,6 @@ void SceneMana::Init() {
 	m_title.Init();
 	m_game.Init();
 	m_resualt.Init();
-	InitFade();
 }
 
 

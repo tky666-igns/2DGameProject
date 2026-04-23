@@ -20,6 +20,7 @@ private:
 	SceneTitle m_title;
 	Scene m_game;
 	SceneResult m_resualt;
+	FADE m_fade;
 
 	tagScene m_state;
 public:
