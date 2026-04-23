@@ -3,40 +3,39 @@
 #include "fade.h"
 
 
-FADE_DATA g_fade;
 
 
 //-------------------------------
 //		フェードリセット
 //-------------------------------
-void ResetFade()
+void FADE::ResetFade()
 {
-	g_fade.m_sate = FADE_NON;
-	g_fade.m_cnt = 0;
+	m_sate = FADE_NON;
+	m_cnt = 0;
 }
 
 
 //-------------------------------
 //		フェード更新
 //-------------------------------
-void UpdateFade()
+void FADE::UpdateFade()
 {
-	switch (g_fade.m_sate)
+	switch (m_sate)
 	{
 	case FADE_IN:
-		g_fade.m_cnt -= FADE_SPD;
-		if (g_fade.m_cnt <= 0)
+		m_cnt -= FADE_SPD;
+		if (m_cnt <= 0)
 		{
-			g_fade.m_cnt = 0;
-			g_fade.m_sate = FADE_NON;
+			m_cnt = 0;
+			m_sate = FADE_NON;
 		}
 		break;
 	case FADE_OUT:
-		g_fade.m_cnt += FADE_SPD;
-		if (g_fade.m_cnt >= 255)
+		m_cnt += FADE_SPD;
+		if (m_cnt >= 255)
 		{
-			g_fade.m_cnt = 255;
-			g_fade.m_sate = FADE_OUT_WAIT;
+			m_cnt = 255;
+			m_sate = FADE_OUT_WAIT;
 		}
 		break;
 	}
@@ -46,15 +45,15 @@ void UpdateFade()
 //-------------------------------
 //		フェード描画
 //-------------------------------
-void DrawFade()
+void FADE::DrawFade()
 {
-	switch (g_fade.m_sate)
+	switch (m_sate)
 	{
 	case FADE_IN:
 	case FADE_OUT:
 	case FADE_OUT_WAIT:
 		// ここでアルファ値をセットする
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, g_fade.m_cnt);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, m_cnt);
 		// フェード用の黒い四角を表示
 		DrawBox(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y,
 			GetColor(0, 0, 0), TRUE);
@@ -68,29 +67,29 @@ void DrawFade()
 //-------------------------------
 //		フェードインリクエスト
 //-------------------------------
-void RequestFadeIn()
+void FADE::RequestFadeIn()
 {
-	g_fade.m_cnt = 255;
-	g_fade.m_sate = FADE_IN;
+	m_cnt = 255;
+	m_sate = FADE_IN;
 }
 
 
 //-------------------------------
 //		フェードアウトリクエスト
 //-------------------------------
-void RequestFadeOut()
+void FADE::RequestFadeOut()
 {
-	g_fade.m_cnt = 0;
-	g_fade.m_sate = FADE_OUT;
+	m_cnt = 0;
+	m_sate = FADE_OUT;
 }
 
 
 //-------------------------------
 //		フェードインが終了したか
 //-------------------------------
-int IsEndFadeIn()
+int FADE::IsEndFadeIn()
 {
-	if (g_fade.m_sate == FADE_IN)
+	if (m_sate == FADE_IN)
 		return 0;
 	else
 		return 1;
@@ -100,9 +99,9 @@ int IsEndFadeIn()
 //-------------------------------
 //		フェードアウトが終了したか
 //-------------------------------
-int IsEndFadeOut()
+int FADE::IsEndFadeOut()
 {
-	if (g_fade.m_sate == FADE_OUT)
+	if (m_sate == FADE_OUT)
 		return 0;
 	else
 		return 1;
