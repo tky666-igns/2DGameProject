@@ -11,8 +11,7 @@ private:
 	enum tagScene {
 		SCENE_TITLE,
 		SCENE_GAME,
-		SCENE_GAMEOVER,
-		SCENE_CLEAR,
+		SCENE_RESULT,
 
 		SCENE_NUM
 	};
@@ -25,7 +24,7 @@ private:
 	tagScene m_state;
 public:
 	void Init();
-	void Step();
+	int Loop();
 	void Draw();
 
 };

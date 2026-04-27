@@ -8,52 +8,53 @@
 //-------------------------------
 //		フェードリセット
 //-------------------------------
-void FADE::ResetFade()
+void FADE::Init()
 {
-	m_sate = FADE_NON;
-	m_cnt = 0;
+	m_state = FADE_NON;
+	m_count = 0;
 }
 
 
 //-------------------------------
 //		フェード更新
 //-------------------------------
-void FADE::UpdateFade()
+int FADE::Step()
 {
-	switch (m_sate)
+	switch (m_state)
 	{
 	case FADE_IN:
-		m_cnt -= FADE_SPD;
-		if (m_cnt <= 0)
+		m_count -= FADE_SPD;
+		if (m_count <= 0)
 		{
-			m_cnt = 0;
-			m_sate = FADE_NON;
+			m_count = 0;
+			m_state = FADE_NON;
 		}
 		break;
 	case FADE_OUT:
-		m_cnt += FADE_SPD;
-		if (m_cnt >= 255)
+		m_count += FADE_SPD;
+		if (m_count >= 255)
 		{
-			m_cnt = 255;
-			m_sate = FADE_OUT_WAIT;
+			m_count = 255;
+			m_state = FADE_OUT_WAIT;
 		}
 		break;
 	}
+	return 0;
 }
 
 
 //-------------------------------
 //		フェード描画
 //-------------------------------
-void FADE::DrawFade()
+void FADE::Draw()
 {
-	switch (m_sate)
+	switch (m_state)
 	{
 	case FADE_IN:
 	case FADE_OUT:
 	case FADE_OUT_WAIT:
 		// ここでアルファ値をセットする
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, m_cnt);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, m_count);
 		// フェード用の黒い四角を表示
 		DrawBox(0, 0, WINDOW_SIZE_X, WINDOW_SIZE_Y,
 			GetColor(0, 0, 0), TRUE);
@@ -69,8 +70,8 @@ void FADE::DrawFade()
 //-------------------------------
 void FADE::RequestFadeIn()
 {
-	m_cnt = 255;
-	m_sate = FADE_IN;
+	m_count = 255;
+	m_state = FADE_IN;
 }
 
 
@@ -79,17 +80,17 @@ void FADE::RequestFadeIn()
 //-------------------------------
 void FADE::RequestFadeOut()
 {
-	m_cnt = 0;
-	m_sate = FADE_OUT;
+	m_count = 0;
+	m_state = FADE_OUT;
 }
 
 
 //-------------------------------
 //		フェードインが終了したか
 //-------------------------------
-int FADE::IsEndFadeIn()
+bool FADE::IsEndFadeIn()
 {
-	if (m_sate == FADE_IN)
+	if (m_state == FADE_IN)
 		return 0;
 	else
 		return 1;
@@ -99,9 +100,9 @@ int FADE::IsEndFadeIn()
 //-------------------------------
 //		フェードアウトが終了したか
 //-------------------------------
-int FADE::IsEndFadeOut()
+bool FADE::IsEndFadeOut()
 {
-	if (m_sate == FADE_OUT)
+	if (m_state == FADE_OUT)
 		return 0;
 	else
 		return 1;
