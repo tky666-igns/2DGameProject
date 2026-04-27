@@ -17,7 +17,7 @@ int SceneMana::Loop()
 	switch (m_state)
 	{
 	case SceneMana::SCENE_TITLE:
-		if (m_title.Step() != -1)
+		if (m_title.Loop() != -1)
 		{
 			m_state = SceneMana::SCENE_GAME;
 		}
@@ -29,13 +29,13 @@ int SceneMana::Loop()
 		}
 		break;
 	case SceneMana::SCENE_RESULT:
-		if (m_resualt.Step() != -1)
+		if (m_resualt.Loop() != -1)
 		{
 			m_state = SceneMana::SCENE_TITLE;
 		}
 
 	}
-
+	return 0;
 }
 
 

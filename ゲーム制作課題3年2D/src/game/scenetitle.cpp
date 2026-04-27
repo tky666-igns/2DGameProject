@@ -81,7 +81,8 @@ void SceneTitle::Draw() {
 		break;
 	case MAIN:
 		DrawFormatString(20, 20, WHITE, "タイトルシーン(Z)");
-		DrawRotaGraph((int)(WINDOW_SIZE_X * 0.5f), (int)WINDOW_SIZE_Y * 0.5f, 1.0f, 0.0f, m_hndl, true);
+		DrawRotaGraph((float)(WINDOW_SIZE_X * 0.5f),
+			(float)WINDOW_SIZE_Y * 0.5f, 1.0f, 0.0f, m_hndl, true);
 		break;
 	case ENDWAIT:
 		break;

@@ -1,4 +1,8 @@
 #pragma once
+#include "../lib/fade.h"
+#include "stage.h"
+#include "player.h"
+#include "hitcheck.h"
 
 
 
@@ -17,10 +21,14 @@ private:
 	};
 	tagSceneGame m_state;
 	int m_res;
+	FADE m_fade;
 public:
 	void Init();
 	int Step();
 	void Draw();
+	int Loop();
+	void Load();
+	void Exit();
 	//void HitCheck();
 };
 

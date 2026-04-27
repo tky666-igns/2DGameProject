@@ -1,8 +1,4 @@
-#include "stage.h"
-#include "player.h"
-#include "hitcheck.h"
 #include "scenegame.h"
-#include "../lib/fade.h"
 
 
 
@@ -25,11 +21,11 @@ int Scene::Step()
 	case SCENEGAME_LOAD:
 		LoadStage();
 		LoadPlayer();
-		RequestFadeIn();
+		m_fade.RequestFadeIn();
 		m_state = SCENEGAME_MAIN;
 		break;
 	case SCENEGAME_STARTWAIT:
-		if (IsEndFadeIn())
+		if (m_fade.IsEndFadeIn())
 		{
 			m_state = SCENEGAME_MAIN;
 		}
@@ -40,7 +36,7 @@ int Scene::Step()
 		//HitCheckPlayerToStage();
 		break;
 	case SCENEGAME_ENDWAIT:
-		if (IsEndFadeOut()) {
+		if (m_fade.IsEndFadeOut()) {
 			m_state = SCENEGAME_END;
 		}
 
