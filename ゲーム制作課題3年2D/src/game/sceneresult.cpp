@@ -1,6 +1,4 @@
 #include "sceneresult.h"
-#include "../lib/fade.h"
-#include "../common.h"
 
 void SceneResult::Init()
 {
@@ -8,47 +6,69 @@ void SceneResult::Init()
 	m_hndl = -1;
 }
 
-int SceneResult::Step() {
+void SceneResult::Load()
+{
+	if (m_hndl == -1)
+	{
+		m_hndl = LoadGraph("data/geme/RESULT.png");
+	}
+}
+
+int SceneResult::Loop() 
+{
+	int m_ret = 0;
+
 	switch (m_state)
 	{
-	case INIT:
+	case SceneResult::INIT:
+		Init();
 		m_hndl = -1;
 		m_state = LOAD;
 		break;
-	case LOAD:
-		if (m_hndl == -1)
-		{
-			m_hndl = LoadGraph("data/geme/RESULT.png");
-		}
-		RequestFadeIn();
+	case SceneResult::LOAD:
+		Load();
+		m_fade.RequestFadeIn();
 		m_state = STARTWAIT;
+		// BGM鳴らす
+		//RequestSound(BGM_ID_TITLE,DX_PLAYTYPE_BACK);
 		break;
-	case STARTWAIT:
-		if (IsEndFadeIn()) {
+	case SceneResult::STARTWAIT:
+		if (m_fade.IsEndFadeIn()) {
 			m_state = MAIN;
 		}
 		break;
-	case MAIN:
-		if (CheckHitKey(KEY_INPUT_RETURN)) {
+	case SceneResult::MAIN:
+		if (Step() == 1)
+		{
 			m_state = ENDWAIT;
-			RequestFadeOut();
+			m_fade.RequestFadeOut();
 		}
 		break;
-	case ENDWAIT:
-		if (IsEndFadeOut()) {
+	case SceneResult::ENDWAIT:
+		if (m_fade.IsEndFadeOut()) {
 			m_state = END;
 		}
 		break;
-	case END:
+	case SceneResult::END:
 		if (m_hndl != -1) {
 			DeleteGraph(m_hndl);
 			m_hndl = -1;
 		}
+		// 破棄
+		//StopAllSound();
+		Exit();
 		m_state = INIT;
-		return 1;
+		m_ret = 1;
 		break;
 	}
 
+	return m_ret;
+}
+
+int SceneResult::Step()
+{
+	if (CheckHitKey(KEY_INPUT_Z))
+		return 1;
 	return 0;
 }
 
@@ -58,9 +78,18 @@ void SceneResult::Draw() {
 	case STARTWAIT:
 	case MAIN:
 	case ENDWAIT:
-		DrawFormatString(20, 20, WHITE, "リザルトシーン");
+		DrawFormatString(20, 20, WHITE, "リザルトシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X * 0.5f), 
 			(int)WINDOW_SIZE_Y * 0.5f, 1.0f, 0.0f, m_hndl, true);
 		break;
+	}
+}
+
+void SceneResult::Exit()
+{
+	if (m_state != -1)
+	{
+		DeleteGraph(m_hndl);
+		m_hndl = -1;
 	}
 }

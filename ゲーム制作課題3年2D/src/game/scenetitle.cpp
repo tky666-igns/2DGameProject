@@ -29,6 +29,8 @@ int SceneTitle::Loop()
 		Load();
 		m_fade.RequestFadeIn();
 		m_state = STARTWAIT;
+		// BGM–Â‚ç‚·
+		//RequestSound(BGM_ID_TITLE,DX_PLAYTYPE_BACK);
 		break;
 	case SceneTitle::STARTWAIT:
 		if (m_fade.IsEndFadeIn()) {
@@ -36,7 +38,8 @@ int SceneTitle::Loop()
 		}
 		break;
 	case SceneTitle::MAIN:
-		if (CheckHitKey(KEY_INPUT_RETURN)) {
+		if (Step() == 1) 
+		{
 			m_state = ENDWAIT;
 			m_fade.RequestFadeOut();
 		}
@@ -51,6 +54,9 @@ int SceneTitle::Loop()
 			DeleteGraph(m_hndl);
 			m_hndl = -1;
 		}
+		// ”jŠü
+		//StopAllSound();
+		Exit();
 		m_state = INIT;
 		m_ret = 1;
 		break;
