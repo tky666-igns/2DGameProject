@@ -7,6 +7,15 @@ void Scene::Init() {
 	m_res = 0;
 }
 
+int Scene::Loop()
+{
+
+	return 0;
+}
+void Scene::Load()
+{
+
+}
 
 
 int Scene::Step()
@@ -65,4 +74,10 @@ void Scene::Draw(void)
 		DrawPlayer();
 		break;
 	}
+}
+
+
+void Scene::Exit()
+{
+
 }
