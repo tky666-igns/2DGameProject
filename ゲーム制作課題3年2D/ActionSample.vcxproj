@@ -17,6 +17,7 @@
     <ClCompile Include="src\game\scenegame.cpp" />
     <ClCompile Include="src\game\sceneresult.cpp" />
     <ClCompile Include="src\game\scenetitle.cpp" />
+    <ClCompile Include="src\game\Sound.cpp" />
     <ClCompile Include="src\game\stage.cpp" />
     <ClCompile Include="src\lib\collision.cpp" />
     <ClCompile Include="src\lib\debug.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="src\game\scenegame.h" />
     <ClInclude Include="src\game\sceneresult.h" />
     <ClInclude Include="src\game\scenetitle.h" />
+    <ClInclude Include="src\game\Sound.h" />
     <ClInclude Include="src\game\stage.h" />
     <ClInclude Include="src\lib\collision.h" />
     <ClInclude Include="src\lib\debug.h" />
