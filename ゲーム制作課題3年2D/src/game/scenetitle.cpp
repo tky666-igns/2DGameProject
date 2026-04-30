@@ -18,7 +18,7 @@ int SceneTitle::Step()
 	case SceneTitle::LOAD:
 		if (m_hndl == -1)
 		{
-			m_hndl = LoadGraph("data/graphics/game/title.jpg");
+			m_hndl = LoadGraph("data/game/TITLE.png");
 		}
 		m_fade.RequestFadeIn();
 		m_state = STARTWAIT;
