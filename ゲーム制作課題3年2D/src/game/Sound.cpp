@@ -3,7 +3,7 @@
 static const char* SOUND_PATH[Sound::tagSound::SOUND_NUM] = {
 	"data/sound/title.mp3",
 	"data/sound/bgm01.mp3",
-	"data/sound/se_explore.mp3",
+	"data/sound/result.mp3",
 };
 
 
