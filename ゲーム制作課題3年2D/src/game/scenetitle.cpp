@@ -24,21 +24,21 @@ int SceneTitle::Step()
 		m_state = STARTWAIT;
 		break;
 	case SceneTitle::STARTWAIT:
-		if (m_fade.IsEndFadeIn() == true) 
+		if (m_fade.IsEndFadeIn()) 
 		{
 			m_sound.RequestSound(Sound::tagSound::BGM_TITLE, DX_PLAYTYPE_LOOP);
 			m_state = MAIN;
 		}
 		break;
 	case SceneTitle::MAIN:
-		if (IsKeyInputTrg(KEY_SHOT) == true)
+		if (IsKeyInputTrg(KEY_SHOT))
 		{
 			m_fade.RequestFadeOut();
 			m_state = ENDWAIT;
 		}
 		break;
 	case SceneTitle::ENDWAIT:
-		if (m_fade.IsEndFadeOut() == true) 
+		if (m_fade.IsEndFadeOut()) 
 		{
 			m_state = END;
 		}
@@ -66,8 +66,8 @@ void SceneTitle::Draw() {
 	case ENDWAIT:
 		// タイトル画面描画
 		DrawFormatString(20, 20, WHITE, "タイトルシーン(Z)");
-		DrawRotaGraph((float)(WINDOW_SIZE_X * 0.5f),
-			(float)WINDOW_SIZE_Y * 0.5f, 1.0f, 0.0f, m_hndl, TRUE);
+		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
+			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hndl, TRUE);
 		break;
 	}
 }

@@ -1,40 +1,35 @@
 #pragma once
-#include "../lib/fade.h"
 #include "stage.h"
+#include <DxLib.h>
+#include "../lib/fade.h"
+#include "../common.h"
+#include"../lib/input.h"
+#include "Sound.h"
 #include "player.h"
-#include "hitcheck.h"
 
 
+static const int END_WAIT = 80;
 
 class Scene
 {
 private:
 	enum tagSceneGame {
-		SCENEGAME_INIT,		// 初期化
-		SCENEGAME_LOAD,		// データロード
-		SCENEGAME_STARTWAIT,
-		SCENEGAME_MAIN,		// メイン処理
-		SCENEGAME_ENDWAIT,
-		SCENEGAME_END,		// 終了処理
+		INIT,		// 初期化
+		LOAD,		// データロード
+		STARTWAIT,
+		MAIN,		// メイン処理
+		ENDWAIT,
+		END,		// 終了処理
 
-		SCENEGAME_NUM
+		NUM
 	};
 	tagSceneGame m_state;
 	int m_res;
+	int m_endWaitCount;
+	Sound m_sound;
 	FADE m_fade;
 public:
 	void Init();
 	int Step();
 	void Draw();
-	int Loop();
-	void Load();
-	void Exit();
-	//void HitCheck();
 };
-
-
-
-
-//void StepGame();
-//void DrawGame();
-

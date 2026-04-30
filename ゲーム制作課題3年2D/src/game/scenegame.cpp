@@ -3,57 +3,46 @@
 
 
 void Scene::Init() {
-	m_state = SCENEGAME_INIT;
-	m_res = 0;
+	m_state = INIT;
+	m_endWaitCount = END_WAIT;
 }
-
-int Scene::Loop()
-{
-
-	return 0;
-}
-void Scene::Load()
-{
-
-}
-
 
 int Scene::Step()
 {
 	switch (m_state)
 	{
-	case SCENEGAME_INIT:
+	case INIT:
 		InitStage();
 		InitPlayer();
-		m_state = SCENEGAME_LOAD;
+		m_state = LOAD;
 		break;
-	case SCENEGAME_LOAD:
+	case LOAD:
 		LoadStage();
 		LoadPlayer();
 		m_fade.RequestFadeIn();
-		m_state = SCENEGAME_MAIN;
+		m_state = MAIN;
 		break;
-	case SCENEGAME_STARTWAIT:
+	case STARTWAIT:
 		if (m_fade.IsEndFadeIn())
 		{
-			m_state = SCENEGAME_MAIN;
+			m_state = MAIN;
 		}
 		break;
-	case SCENEGAME_MAIN:
+	case MAIN:
 		UpdateStage();
 		UpdatePlayer();
 		//HitCheckPlayerToStage();
 		break;
-	case SCENEGAME_ENDWAIT:
+	case ENDWAIT:
 		if (m_fade.IsEndFadeOut()) {
-			m_state = SCENEGAME_END;
+			m_state = END;
 		}
 
 		break;
-	case SCENEGAME_END:
+	case END:
 		ExitStage();
 		ExitPlayer();
-		m_state = SCENEGAME_INIT;
+		m_state = INIT;
 		return m_res;
 		break;
 	}
@@ -66,9 +55,9 @@ void Scene::Draw(void)
 {
 	switch (m_state)
 	{
-	case SCENEGAME_STARTWAIT:
-	case SCENEGAME_MAIN:
-	case SCENEGAME_ENDWAIT:
+	case STARTWAIT:
+	case MAIN:
+	case ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "ÉQÅ[ÉÄ");
 		DrawStage();
 		DrawPlayer();
@@ -76,8 +65,3 @@ void Scene::Draw(void)
 	}
 }
 
-
-void Scene::Exit()
-{
-
-}

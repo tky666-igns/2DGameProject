@@ -24,7 +24,7 @@ private:
 	tagScene m_state;
 public:
 	void Init();
-	int Loop();
+	int Step();
 	void Draw();
 
 };
