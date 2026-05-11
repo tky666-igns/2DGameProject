@@ -44,16 +44,16 @@ void Scene::Draw()
 	switch (m_state)
 	{
 	case SceneMana::SCENE_TITLE:
-		DrawTitle();
+		m_title.Draw();
 		break;
 	case SceneMana::SCENE_GAME:
-		DrawGame();
+		m_game.Draw();
 		break;
 	case SceneMana::SCENE_RESULT:
-		DrawResult();
+		m_resualt.Draw();
 		break;
 	}
-	DrawFade();
+	m_fade.Draw();
 }
 
 
