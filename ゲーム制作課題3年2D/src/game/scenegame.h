@@ -29,6 +29,7 @@ private:
 	Sound m_sound;
 	FADE m_fade;
 	Player m_player;
+	Stage m_stage;
 public:
 	void Init();
 	int Step();

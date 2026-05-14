@@ -12,12 +12,12 @@ int Scene::Step()
 	switch (m_state)
 	{
 	case INIT:
-		InitStage();
+		m_stage.Init();
 		m_player.Init();
 		m_state = LOAD;
 		break;
 	case LOAD:
-		LoadStage();
+		m_stage.Load();
 		m_player.Load();
 		m_fade.RequestFadeIn();
 		m_state = MAIN;
@@ -29,7 +29,7 @@ int Scene::Step()
 		}
 		break;
 	case MAIN:
-		UpdateStage();
+		m_stage.Update();
 		m_player.Update();
 		//HitCheckPlayerToStage();
 		break;
@@ -40,7 +40,7 @@ int Scene::Step()
 
 		break;
 	case END:
-		ExitStage();
+		m_stage.Exit();
 		m_player.Exit();
 		m_state = INIT;
 		return m_res;
@@ -59,7 +59,7 @@ void Scene::Draw(void)
 	case MAIN:
 	case ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "ÉQÅ[ÉÄ");
-		DrawStage();
+		m_stage.Draw();
 		m_player.Draw();
 		break;
 	}

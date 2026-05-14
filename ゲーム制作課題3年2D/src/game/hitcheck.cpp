@@ -1,7 +1,7 @@
 #include "hitcheck.h"
 
 extern Player m_player;
-extern STAGE_DATA g_stage;
+extern Stage m_stage;
 
 //-------------------------------
 //		プレイヤーとステージオブジェクトの当たり判定
