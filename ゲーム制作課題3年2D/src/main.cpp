@@ -1,5 +1,5 @@
 #include <DxLib.h>
-#include "game/scenegame.h"
+#include "game/scene.h"
 #include "lib/input.h"
 #include "lib/debug.h"
 
@@ -21,8 +21,10 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetTransColor(255, 0, 255);	// 透過色指定
 
-	Scene g_game;
-
+	SceneMana g_game;
+	Input g_input;
+	g_game.Init();
+	g_input.InitInput();
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
 	{
@@ -32,7 +34,7 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		ClearDrawScreen();
 
 		// 計算処理
-		UpdateKeyInput();
+		g_input.UpdateInput();
 		g_game.Step();
 		// 描画処理
 		g_game.Draw();

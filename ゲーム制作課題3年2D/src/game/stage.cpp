@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include "stage.h"
-#include "../common.h"
-#include "player.h"
 
 STAGE_DATA g_stage = { 0 };
 

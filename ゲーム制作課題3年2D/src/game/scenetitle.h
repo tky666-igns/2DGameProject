@@ -21,6 +21,9 @@ private:
 	tagSceneTITLE m_state;
 	FADE m_fade;
 	Sound m_sound;
+	Input m_nowKey;
+	Input m_prevKey;
+	Input m_input;
 	int m_hndl;
 public:
 	void Init();

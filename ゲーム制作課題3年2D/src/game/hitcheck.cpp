@@ -1,10 +1,6 @@
-#include <math.h>
-#include "player.h"
-#include "stage.h"
-#include "../common.h"
-#include "../lib/collision.h"
+#include "hitcheck.h"
 
-extern PLAYER_DATA g_player;
+extern Player m_player;
 extern STAGE_DATA g_stage;
 
 //-------------------------------

@@ -28,6 +28,7 @@ private:
 	int m_endWaitCount;
 	Sound m_sound;
 	FADE m_fade;
+	Player m_player;
 public:
 	void Init();
 	int Step();

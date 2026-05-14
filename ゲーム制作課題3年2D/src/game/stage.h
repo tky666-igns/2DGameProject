@@ -2,6 +2,8 @@
 
 #include <DxLib.h>
 #include "../common.h"
+#include "../common.h"
+#include "player.h"
 
 // ステージオブジェクト構造体
 typedef struct{

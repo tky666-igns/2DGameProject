@@ -17,26 +17,29 @@ int SceneMana::Step()
 	switch (m_state)
 	{
 	case SceneMana::SCENE_TITLE:
-		if (m_title.Step() != -1)
+		if (m_title.Step() != 0)
 		{
 			m_state = SceneMana::SCENE_GAME;
 		}
 		break;
 	case SceneMana::SCENE_GAME:
-		if (m_game.Step() != -1)
+		if (m_game.Step() != 0)
 		{
 			m_state = SceneMana::SCENE_RESULT;
 		}
 		break;
 	case SceneMana::SCENE_RESULT:
-		if (m_resualt.Step() != -1)
+		if (m_resualt.Step() != 0)
 		{
 			m_state = SceneMana::SCENE_TITLE;
+
+
 		}
+		m_fade.Step();
 
+		return 1;
 	}
-
-	return 1;
+	return 0;
 }
 
 void SceneMana::Draw()
@@ -54,6 +57,7 @@ void SceneMana::Draw()
 		break;
 	}
 	m_fade.Draw();
+
 }
 
 

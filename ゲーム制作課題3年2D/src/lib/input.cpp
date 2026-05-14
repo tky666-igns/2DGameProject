@@ -1,54 +1,64 @@
 #include <DxLib.h>
 #include "input.h"
 
-// キーボード入力構造体
-typedef struct{
-	unsigned int m_nowKey;	// 今回入力したキー
-	unsigned int m_preKey;	// 前回入力したキー
-}INPUT_DATA;
-
-static INPUT_DATA g_inputData = { 0 };
 
 
-//-------------------------------
-//		キー入力更新
-//-------------------------------
-void UpdateKeyInput(void)
+//キー入力情報の初期化----------------
+void Input::InitInput()
+{
+	m_nowKey = m_preKey = 0;
+	m_nowKey = 0;
+
+
+	if (CheckHitKey(KEY_INPUT_UP)) m_nowKey |= KEY_UP;
+
+}
+
+//	キー入力更新
+void Input::UpdateInput()
 {
 	// 前回のデータ更新
-	g_inputData.m_preKey = g_inputData.m_nowKey;
+	m_preKey = m_nowKey;
 	// 一度データを0にする
-	g_inputData.m_nowKey = 0;
+	m_nowKey = 0;
 
 	// 上を押した
-	if(CheckHitKey(KEY_INPUT_UP)) g_inputData.m_nowKey |= KEY_UP;
+	if(CheckHitKey(KEY_INPUT_UP)) m_nowKey |= KEY_UP;
 	// 下を押した
-	if(CheckHitKey(KEY_INPUT_DOWN)) g_inputData.m_nowKey |= KEY_DOWN;
+	if(CheckHitKey(KEY_INPUT_DOWN)) m_nowKey |= KEY_DOWN;
 	// 右を押した
-	if(CheckHitKey(KEY_INPUT_RIGHT)) g_inputData.m_nowKey |= KEY_RIGHT;
+	if(CheckHitKey(KEY_INPUT_RIGHT)) m_nowKey |= KEY_RIGHT;
 	// 左を押した
-	if(CheckHitKey(KEY_INPUT_LEFT)) g_inputData.m_nowKey |= KEY_LEFT;
+	if(CheckHitKey(KEY_INPUT_LEFT)) m_nowKey |= KEY_LEFT;
 	// Zを押した
-	if(CheckHitKey(KEY_INPUT_Z)) g_inputData.m_nowKey |= KEY_SHOT;
+	if(CheckHitKey(KEY_INPUT_Z)) m_nowKey |= KEY_SHOT;
 }
 
 
-//-------------------------------
-//		キー入力判定(通常判定)
-//-------------------------------
-int IsKeyInputRep(unsigned int uKey)
+//	キー入力判定(通常判定)
+bool Input::IsInputRep(unsigned int key)
 {
-	if(g_inputData.m_nowKey & uKey) return 1;
-	else return 0;
+	if ((m_nowKey & key) != 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 
-//-------------------------------
-//		キー入力判定(トリガー判定)
-//-------------------------------
-int IsKeyInputTrg(unsigned int uKey)
+//	キー入力判定(トリガー判定)
+bool Input::IsInputTrg(unsigned int key)
 {
-	if((g_inputData.m_nowKey & uKey)
-		&& !(g_inputData.m_preKey & uKey)) return 1;
-	else return 0;
+	if ((m_nowKey & key) != 0
+		&& !(m_preKey & key) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
