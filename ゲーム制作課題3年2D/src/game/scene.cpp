@@ -39,7 +39,7 @@ int SceneMana::Step()
 	return 1;
 }
 
-void Scene::Draw()
+void SceneMana::Draw()
 {
 	switch (m_state)
 	{
