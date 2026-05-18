@@ -21,9 +21,7 @@ private:
 	tagSceneRESULT m_state;
 	int m_hndl;
 	FADE m_fade;
-	Input m_nowKey;
-	Input m_prevKey;
-	Input m_input;
+	Input m_nowKey, m_prevKey, m_input;
 	Sound m_sound;
 
 public:
