@@ -1,4 +1,5 @@
 #pragma once
+#include <DxLib.h>
 
 // ウィンドウのサイズ
 static const int WINDOW_SIZE_X = 640;
