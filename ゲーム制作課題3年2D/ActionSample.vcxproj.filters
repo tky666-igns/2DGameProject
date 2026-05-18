@@ -56,6 +56,12 @@
     <ClCompile Include="src\game\Sound.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\Goal.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Trap.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\scenegame.h">
@@ -95,6 +101,12 @@
       <Filter>src\game</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Sound.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Goal.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Trap.h">
       <Filter>src\game</Filter>
     </ClInclude>
   </ItemGroup>
