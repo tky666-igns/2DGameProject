@@ -15,6 +15,7 @@ static const int STAGE_Y	= 15;
 // ステージのタイプ
 enum tagStageID{
 	STAGEID_BLOCK,		// 床・壁
+	STAGEID_TRAP,		// 触ると死ぬやつ
 	STAGEID_BOX,		// 宝箱
 
 	STAGEID_NUM

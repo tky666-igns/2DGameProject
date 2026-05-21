@@ -16,5 +16,6 @@ public:
 	// ƒvƒŒƒCƒ„[‚Æã©‚Ì“–‚½‚è”»’è
 	void HitCheckPlayerToTrap();
 
+	Player m_player;
 
 };

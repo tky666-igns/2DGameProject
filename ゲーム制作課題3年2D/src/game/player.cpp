@@ -2,10 +2,10 @@
 
 
 
-#define START_POS_X		(48)	// プレイヤーの開始地点(横)
-#define START_POS_Y		(432)	// プレイヤーの開始地点(縦)
-#define PLAYER_SPD		(2)		// プレイヤーの移動速度
-#define PLAYER_JUMP_POW	(5.0f)	// プレイヤーの移動速度
+ static const int	START_POS_X		= 48;	// プレイヤーの開始地点(横)
+ static const int	START_POS_Y		= 432;	// プレイヤーの開始地点(縦)
+ static const int	PLAYER_SPD		= 2;	// プレイヤーの移動速度
+ static const float	PLAYER_JUMP_POW	= 5.0f;	// プレイヤーの移動速度
 
 // 方向
 enum tagDir{

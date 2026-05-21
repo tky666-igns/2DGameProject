@@ -24,21 +24,21 @@ int SceneTitle::Step()
 		m_state = STARTWAIT;
 		break;
 	case SceneTitle::STARTWAIT:
-		if (m_fade.IsEndFadeIn() == true) 
+		if (m_fade.IsEndFadeIn()) 
 		{
 			m_sound.RequestSound(Sound::tagSound::BGM_TITLE, DX_PLAYTYPE_LOOP);
 			m_state = MAIN;
 		}
 		break;
 	case SceneTitle::MAIN:
-		if (m_nowKey.IsInputTrg(KEY_SHOT) == true)
+		if (m_nowKey.IsInputTrg(KEY_SHOT))
 		{
 			m_fade.RequestFadeOut();
 			m_state = ENDWAIT;
 		}
 		break;
 	case SceneTitle::ENDWAIT:
-		if (m_fade.IsEndFadeOut() == true)
+		if (m_fade.IsEndFadeOut())
 		{
 			m_state = END;
 		}
