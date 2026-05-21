@@ -57,10 +57,10 @@ void Scene::Draw(void)
 	{
 	case STARTWAIT:
 	case MAIN:
-	case ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "ÉQÅ[ÉÄ");
 		m_stage.Draw();
 		m_player.Draw();
+	case ENDWAIT:
 		break;
 	}
 }

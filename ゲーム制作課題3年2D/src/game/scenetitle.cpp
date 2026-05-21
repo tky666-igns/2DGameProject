@@ -63,11 +63,11 @@ void SceneTitle::Draw() {
 	{
 	case STARTWAIT:
 	case MAIN:
-	case ENDWAIT:
 		// タイトル画面描画
 		DrawFormatString(20, 20, WHITE, "タイトルシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
 			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hndl, TRUE);
+	case ENDWAIT:
 		break;
 	}
 }

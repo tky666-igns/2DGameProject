@@ -6,7 +6,7 @@
 #include "../lib/collision.h"
 
 
-class Hit : public Player,public Stage
+class Hit
 {
 public:
 	// プレイヤーとステージオブジェクトの当たり判定

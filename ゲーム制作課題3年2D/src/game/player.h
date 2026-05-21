@@ -22,8 +22,7 @@ public:
 	tagState m_state;			// プレイヤーの状態
 	int m_dir;					// プレイヤーの向き
 	int m_animCnt;				// アニメーションカウント用
-	Input m_nowKey;				// 今回入力したキー
-	Input m_prevKey;				// 前回入力したキー
+	Input m_nowKey, m_prevKey;	// 今回入力したキー 前回入力したキー
 public:
 	//		プレイヤー初期化
 	void Init();

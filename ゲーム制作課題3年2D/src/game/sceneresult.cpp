@@ -61,10 +61,10 @@ void SceneResult::Draw() {
 	{
 	case STARTWAIT:
 	case MAIN:
-	case ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "リザルトシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
 			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hndl, TRUE);
+	case ENDWAIT:
 		break;
 	}
 }
