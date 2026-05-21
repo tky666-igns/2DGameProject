@@ -4,7 +4,7 @@
 //-------------------------------
 //		“_‚ÆŽlŠp‚Ì‚ ‚½‚è”»’è
 //-------------------------------
-int	ChenkHitDotToSquare(VECTOR dotPos, VECTOR squarePos,
+int	CheckHitDotToSquare(VECTOR dotPos, VECTOR squarePos,
 	int sizeX, int sizeY)
 {
 	int ret = 0;
@@ -22,7 +22,7 @@ int	ChenkHitDotToSquare(VECTOR dotPos, VECTOR squarePos,
 //-------------------------------
 //		‹éŒ`“¯Žm‚Ì‚ ‚½‚è”»’è
 //-------------------------------
-int	ChenkHitSquareToSquare(VECTOR squarePos1, VECTOR squarePos2,
+int	CheckHitSquareToSquare(VECTOR squarePos1, VECTOR squarePos2,
 	int sizeX1, int sizeY1, int sizeX2, int sizeY2)
 {
 	int ret = 0;
@@ -40,7 +40,7 @@ int	ChenkHitSquareToSquare(VECTOR squarePos1, VECTOR squarePos2,
 //-------------------------------
 //		‰~“¯Žm‚Ì‚ ‚½‚è”»’è
 //-------------------------------
-int	ChenkHitCircleToCircle(VECTOR circlePos1, VECTOR circlePos2, int radius1, int radius2)
+int	CheckHitCircleToCircle(VECTOR circlePos1, VECTOR circlePos2, int radius1, int radius2)
 {
 	int ret = 0;
 	float lenX = circlePos1.x - circlePos2.x;

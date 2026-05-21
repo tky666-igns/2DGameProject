@@ -9,7 +9,7 @@
 
 class Player
 {
-private:
+public:
 	// ƒvƒŒƒCƒ„[‚Ìó‘Ô
 	enum tagState {
 		PLAYER_WAIT,
