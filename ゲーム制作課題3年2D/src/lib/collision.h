@@ -7,19 +7,19 @@
 //	squarePos	:	四角形の中心位置
 //	sizeX,Y	:	四角形の縦と横のサイズ(中心からの距離)
 //	@return		:	0=ヒットなし、1=ヒット
-int		CheckHitDotToSquare(VECTOR dotPos, VECTOR squarePos,
-								int sizeX, int sizeY);
+bool CheckHitDotToSquare(VECTOR dotPos, VECTOR squarePos,
+	int width, int height);
 
 //		矩形同士のあたり判定
 //	squarePos	:	各矩形の中心位置
 //	sizeX,Y		:	各矩形の縦と横のサイズ(中心からの距離)
 //	@return		:	0=ヒットなし、1=ヒット
-int		CheckHitSquareToSquare(VECTOR squarePos1, VECTOR squarePos2,
-								int sizeX1, int sizeY1, int sizeX2, int sizeY2);
+bool CheckHitSquareToSquare(VECTOR squarePos1, int width1, int height1,
+	VECTOR squarePos2, int width2, int height2);
 
 //		円同士のあたり判定
 //	circlePos	:	各円の中心位置
 //	radius		:	各円の半径
 //	@return		:	0=ヒットなし、1=ヒット
-int		CheckHitCircleToCircle(VECTOR circlePos1, VECTOR circlePos2,
-								int radius1, int radius2);
+bool CheckHitCircleToCircle(VECTOR circlePos1, int radius1,
+	VECTOR circlePos2, int radius2);

@@ -4,51 +4,74 @@
 //-------------------------------
 //		点と四角のあたり判定
 //-------------------------------
-int	CheckHitDotToSquare(VECTOR dotPos, VECTOR squarePos,
-	int sizeX, int sizeY)
+bool CheckHitDotToSquare(VECTOR dotPos, VECTOR squarePos,
+	int width, int height)
 {
-	int ret = 0;
-	if (dotPos.x > squarePos.x - sizeX		// 四角の左端チェック
-		&& dotPos.x < squarePos.x + sizeX	// 四角の右端チェック
-		&& dotPos.y > squarePos.y - sizeY	// 四角の上端チェック
-		&& dotPos.y < squarePos.y + sizeY)	// 四角の下端チェック
+	// 四角形の上下左右それぞれの座標を計算する
+	float up = squarePos.y - height * 0.5f;
+	float down = squarePos.y + height * 0.5f;
+	float left = squarePos.x - width * 0.5f;
+	float right = squarePos.x + width * 0.5f;
+
+	// 4つの端をそれぞれチェックして、すべての条件を満たしたらヒット！
+	if (dotPos.x >= left && dotPos.x <= right
+		&& dotPos.y >= up && dotPos.y <= down)
 	{
-		ret = 1;
+		return true;
 	}
-	return ret;
+	else return false;
 }
 
 
 //-------------------------------
 //		矩形同士のあたり判定
 //-------------------------------
-int	CheckHitSquareToSquare(VECTOR squarePos1, VECTOR squarePos2,
-	int sizeX1, int sizeY1, int sizeX2, int sizeY2)
+bool CheckHitSquareToSquare(VECTOR squarePos1, int width1, int height1,
+	VECTOR squarePos2, int width2, int height2)
 {
-	int ret = 0;
-	if (squarePos1.x - sizeX1 < squarePos2.x + sizeX2		// 四角の左端チェック
-		&& squarePos1.x + sizeX1 > squarePos2.x - sizeX2	// 四角の右端チェック
-		&& squarePos1.y - sizeY1 < squarePos2.y + sizeY2	// 四角の上端チェック
-		&& squarePos1.y + sizeY1 > squarePos2.y - sizeY2)	// 四角の下端チェック
+	// 四角形の上下左右それぞれの座標を計算する
+	float up1 = squarePos1.y - height1 * 0.5f;
+	float down1 = squarePos1.y + height1 * 0.5f;
+	float left1 = squarePos1.x - width1 * 0.5f;
+	float right1 = squarePos1.x + width1 * 0.5f;
+
+	float up2 = squarePos2.y - height2 * 0.5f;
+	float down2 = squarePos2.y + height2 * 0.5f;
+	float left2 = squarePos2.x - width2 * 0.5f;
+	float right2 = squarePos2.x + width2 * 0.5f;
+
+	// 4つの端をそれぞれチェックして、すべての条件を満たしたらヒット！
+	if (left1 <= right2 && right1 >= left2
+		&& up1 <= down2 && down1 >= up2)
 	{
-		ret = 1;
+		return true;
 	}
-	return ret;
+	else return false;
 }
 
 
 //-------------------------------
 //		円同士のあたり判定
 //-------------------------------
-int	CheckHitCircleToCircle(VECTOR circlePos1, VECTOR circlePos2, int radius1, int radius2)
+bool CheckHitCircleToCircle(VECTOR circlePos1, int radius1,
+	VECTOR circlePos2, int radius2)
 {
-	int ret = 0;
-	float lenX = circlePos1.x - circlePos2.x;
-	float lenY = circlePos1.y - circlePos2.y;
-	float radLen = (float)(radius1 + radius2);
-	if (lenX * lenX + lenY * lenY < radLen * radLen)
+	// 円1から円2までの距離を計算
+	float lengthX = circlePos1.x - circlePos2.x;	// どうせ2乗するとマイナスが消えるので、順番はどうでもいい
+	lengthX *= lengthX;
+	float lengthY = circlePos1.y - circlePos2.y;	// どうせ2乗するとマイナスが消えるので、順番はどうでもいい
+	lengthY *= lengthY;
+	float length = lengthX + lengthY;	// これがaの2乗＋bの2乗
+
+	// 2つの円の半径を加算し、2乗する
+	float lengthRadius = (float)(radius1 + radius2);
+	lengthRadius *= lengthRadius;
+
+
+	// 以下の条件を満たせばヒットする！
+	if (lengthRadius >= length)
 	{
-		ret = 1;
+		return true;
 	}
-	return ret;
+	else return false;
 }

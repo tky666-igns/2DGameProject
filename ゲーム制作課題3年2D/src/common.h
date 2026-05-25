@@ -22,12 +22,12 @@ enum tagStageID{
 };
 
 // プレイヤーのサイズ
-static const int PLAYER_SIZE_X = 32;
-static const int PLAYER_SIZE_Y = 32;
+static const float PLAYER_SIZE_X = 32.0f;
+static const float PLAYER_SIZE_Y = 32.0f;
 
 // ステージに配置する物体のサイズ
-static const int OBJECT_SIZE_X = 32;
-static const int OBJECT_SIZE_Y = 32;
+static const float OBJECT_SIZE_X = 32.0f;
+static const float OBJECT_SIZE_Y = 32.0f;
 
 
 static const int RED = GetColor(255, 0, 0);

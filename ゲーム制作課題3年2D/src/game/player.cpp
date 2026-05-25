@@ -7,6 +7,7 @@
  static const int	PLAYER_SPD		= 2;	// プレイヤーの移動速度
  static const float	PLAYER_JUMP_POW	= 5.0f;	// プレイヤーの移動速度
 
+
 // 方向
 enum tagDir{
 	UP,

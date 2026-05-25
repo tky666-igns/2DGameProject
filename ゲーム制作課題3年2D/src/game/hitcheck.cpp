@@ -5,7 +5,7 @@
 void Hit::HitCheckPlayerToStage()
 {
 	bool isHitGround = false;
-
+	
 	//ステージすべてのマップチップと判定
 	for (int y = 0; y < STAGE_Y; y++)
 	{

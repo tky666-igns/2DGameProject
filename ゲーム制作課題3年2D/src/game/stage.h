@@ -2,7 +2,6 @@
 
 #include <DxLib.h>
 #include "../common.h"
-#include "../common.h"
 #include "player.h"
 
 class Object
