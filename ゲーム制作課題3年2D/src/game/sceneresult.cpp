@@ -5,40 +5,42 @@ void SceneResult::Init()
 	m_state = INIT;
 }
 
-int SceneResult::Step() 
+int SceneResult::Loop() 
 {
+	int result = -1;
+
 	switch (m_state)
 	{
 	case SceneResult::INIT:
 		m_hndl = -1;
-		m_state = LOAD;
+		m_state = SceneResult::LOAD;
 		break;
 	case SceneResult::LOAD:
 		if (m_hndl == -1)
 		{
 			m_hndl = LoadGraph("data/game/RESULT.png");
 		}
+		m_sound.RequestSound(Sound::BGM_TITLE, DX_PLAYTYPE_LOOP);
 		m_fade.RequestFadeIn();
-		m_state = STARTWAIT;
+		m_state = SceneResult::STARTWAIT;
 		break;
 	case SceneResult::STARTWAIT:
 		if (m_fade.IsEndFadeIn())
 		{
-			m_sound.RequestSound(Sound::tagSound::BGM_TITLE, DX_PLAYTYPE_LOOP);
-			m_state = MAIN;
+			m_state = SceneResult::MAIN;
 		}
 		break;
 	case SceneResult::MAIN:
-		if (m_nowKey.IsInputTrg(KEY_SHOT))
+		if (CheckHitKey(KEY_INPUT_Z))
 		{
 			m_fade.RequestFadeOut();
-			m_state = ENDWAIT;
+			m_state = SceneResult::ENDWAIT;
 		}
 		break;
 	case SceneResult::ENDWAIT:
 		if (m_fade.IsEndFadeOut())
 		{
-			m_state = END;
+			m_state = SceneResult::END;
 		}
 		break;
 	case SceneResult::END:
@@ -49,11 +51,11 @@ int SceneResult::Step()
 		}
 		// 破棄
 		m_sound.StopAllSound();
-		m_state = INIT;
-		return 1;
+		m_state = SceneResult::INIT;
+		result = 0;;
 	}
 
-	return 0;
+	return result;
 }
 
 void SceneResult::Draw() {
@@ -61,10 +63,10 @@ void SceneResult::Draw() {
 	{
 	case STARTWAIT:
 	case MAIN:
+	case ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "リザルトシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
 			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hndl, TRUE);
-	case ENDWAIT:
 		break;
 	}
 }

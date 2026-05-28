@@ -1,50 +1,60 @@
 #include "scene.h"
 
-
+// 初期化処理
 void SceneMana::Init() {
-	m_state = SCENE_TITLE;
+	m_sceneID = SCENE_TITLE;
 	m_title.Init();
 	m_game.Init();
 	m_resualt.Init();
 	m_fade.Init();
-	m_fade.RequestFadeIn();
-	m_fade.RequestFadeOut();
+	m_sound.Init();
+	m_sound.Load();
 }
 
-int SceneMana::Step()
+// デストラクタ
+SceneMana::~SceneMana()
 {
-	// ゲームが終了したかを外部に伝えるため
-	switch (m_state)
+	Sound::Exit;
+}
+
+// 実行処理
+int SceneMana::Loop()
+{
+	int result = -1;
+	// ゲームが終了したか外部に伝えるため
+	switch (m_sceneID)
 	{
 	case SceneMana::SCENE_TITLE:
-		if (m_title.Step() != 0)
+		if (m_title.Loop() != -1)
 		{
-			m_state = SceneMana::SCENE_GAME;
+			m_sceneID = SceneMana::SCENE_GAME;
 		}
 		break;
 	case SceneMana::SCENE_GAME:
-		if (m_game.Step() != 0)
+		if (m_game.Step() != -1)
 		{
-			m_state = SceneMana::SCENE_RESULT;
+			m_sceneID = SceneMana::SCENE_RESULT;
 		}
 		break;
 	case SceneMana::SCENE_RESULT:
-		if (m_resualt.Step() != 0)
+		if (m_resualt.Loop() != -1)
 		{
-			m_state = SceneMana::SCENE_TITLE;
+			m_sceneID = SceneMana::SCENE_TITLE;
 
 
 		}
-		m_fade.Step();
-
-		return 1;
+		break;
 	}
+	// フェード処理の更新
+	m_fade.Step();
+	// 本編が終了したのか伝える
 	return 0;
 }
 
+// 描画処理
 void SceneMana::Draw()
 {
-	switch (m_state)
+	switch (m_sceneID)
 	{
 	case SceneMana::SCENE_TITLE:
 		m_title.Draw();

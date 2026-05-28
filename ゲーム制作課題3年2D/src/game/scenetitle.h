@@ -26,7 +26,7 @@ private:
 public:
 	void Init();
 	void Draw();
-	int Step();
+	int Loop();
 };
 
 

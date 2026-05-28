@@ -1,46 +1,51 @@
 #include "scenetitle.h"
 
 
+// 初期化処理
 void SceneTitle::Init()
 {
 	m_state = INIT;
 }
 
-int SceneTitle::Step() 
+// 実行処理
+int SceneTitle::Loop() 
 {
+	int result = -1;
 	switch (m_state)
 	{
 	case SceneTitle::INIT:
 		// 初期化関連
 		m_hndl = -1;
-		m_state = LOAD;
+		m_state = SceneTitle::LOAD;
 		break;
 	case SceneTitle::LOAD:
 		if (m_hndl == -1)
 		{
 			m_hndl = LoadGraph("data/game/TITLE.png");
 		}
-		m_fade.RequestFadeIn();
-		m_state = STARTWAIT;
+		// フェードイン開始
+		m_fade.FADE::RequestFadeIn();
+		m_sound.RequestSound(m_sound.BGM_TITLE, DX_PLAYTYPE_LOOP);
+		m_state = SceneTitle::STARTWAIT;
 		break;
 	case SceneTitle::STARTWAIT:
 		if (m_fade.IsEndFadeIn()) 
 		{
-			m_sound.RequestSound(Sound::tagSound::BGM_TITLE, DX_PLAYTYPE_LOOP);
-			m_state = MAIN;
+			m_state = SceneTitle::MAIN;
 		}
 		break;
 	case SceneTitle::MAIN:
-		if (m_nowKey.IsInputTrg(KEY_SHOT))
+		if (CheckHitKey(KEY_INPUT_Z))
 		{
+			// フェードアウト開始
 			m_fade.RequestFadeOut();
-			m_state = ENDWAIT;
+			m_state = SceneTitle::ENDWAIT;
 		}
 		break;
 	case SceneTitle::ENDWAIT:
 		if (m_fade.IsEndFadeOut())
 		{
-			m_state = END;
+			m_state = SceneTitle::END;
 		}
 		break;
 	case SceneTitle::END:
@@ -52,22 +57,25 @@ int SceneTitle::Step()
 		// 破棄
 		m_sound.StopAllSound();
 		m_state = INIT;
-		return 1;
+		result = 0;
+		break;
 	}
 
-	return 0;
+	return result;
 }
 
+// 描画処理
 void SceneTitle::Draw() {
 	switch (m_state)
 	{
 	case STARTWAIT:
 	case MAIN:
+	case ENDWAIT:
 		// タイトル画面描画
 		DrawFormatString(20, 20, WHITE, "タイトルシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
 			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hndl, TRUE);
-	case ENDWAIT:
+
 		break;
 	}
 }

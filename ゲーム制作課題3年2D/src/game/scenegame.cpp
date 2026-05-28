@@ -2,12 +2,20 @@
 
 
 
+// 初期化処理
 void Scene::Init() {
 	m_state = INIT;
 	m_endWaitCount = END_WAIT;
 }
 
-int Scene::Step()
+// デストラクタ
+Scene::~Scene()
+{
+	Exit();
+}
+
+// 実行処理
+int Scene::Loop()
 {
 	switch (m_state)
 	{
@@ -50,18 +58,30 @@ int Scene::Step()
 	return 0;
 }
 
-
-void Scene::Draw(void)
+// ロード
+void Scene::Load()
 {
-	switch (m_state)
-	{
-	case STARTWAIT:
-	case MAIN:
-		DrawFormatString(20, 20, WHITE, "ゲーム");
-		m_stage.Draw();
-		m_player.Draw();
-	case ENDWAIT:
-		break;
-	}
+	m_player.Load();
+	m_stage.Load();
+}
+
+// メイン処理
+void Scene::Step()
+{
+
+}
+
+// 終了前処理
+void Scene::Exit()
+{
+	m_player.Exit();
+	m_stage.Exit();
+}
+
+// 描画処理
+void Scene::Draw()
+{
+	m_player.Draw();
+	m_stage.Draw();
 }
 

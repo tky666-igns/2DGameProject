@@ -31,7 +31,13 @@ private:
 	Player m_player;
 	Stage m_stage;
 public:
-	void Init();
-	int Step();
+	int Loop();
 	void Draw();
+	~Scene();
+private:
+	void Init();
+	void Load();
+	void Step();
+	void Exit();
+
 };

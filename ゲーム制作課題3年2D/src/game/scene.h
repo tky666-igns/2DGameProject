@@ -4,6 +4,7 @@
 #include "scenegame.h"
 #include "sceneresult.h"
 #include "../lib/fade.h"
+#include "Sound.h"
 
 class SceneMana
 {
@@ -19,14 +20,15 @@ private:
 	SceneTitle m_title;
 	Scene m_game;
 	SceneResult m_resualt;
+	Sound m_sound;
 	FADE m_fade;
 
-	tagScene m_state;
+	tagScene m_sceneID;
 public:
 	void Init();
-	int Step();
+	int Loop();
 	void Draw();
-
+	~SceneMana();
 };
 
 
