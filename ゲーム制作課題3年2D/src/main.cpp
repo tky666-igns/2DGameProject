@@ -35,7 +35,7 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		// ŒvZˆ—
 		g_input.UpdateInput();
-		g_game.Step();
+		g_game.Loop();
 		// •`‰æˆ—
 		g_game.Draw();
 

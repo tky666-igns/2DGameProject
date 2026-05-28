@@ -34,7 +34,6 @@ public:
 	int Loop();
 	void Draw();
 	~Scene();
-private:
 	void Init();
 	void Load();
 	void Step();

@@ -14,7 +14,7 @@ void SceneMana::Init() {
 // デストラクタ
 SceneMana::~SceneMana()
 {
-	Sound::Exit;
+	m_sound.Sound::Exit();
 }
 
 // 実行処理
@@ -31,7 +31,7 @@ int SceneMana::Loop()
 		}
 		break;
 	case SceneMana::SCENE_GAME:
-		if (m_game.Step() != -1)
+		if (m_game.Loop() != -1)
 		{
 			m_sceneID = SceneMana::SCENE_RESULT;
 		}
