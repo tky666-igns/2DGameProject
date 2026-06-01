@@ -14,7 +14,7 @@ public:
 	// プレイヤーとゴールの当たり判定
 	void HitCheckPlayerToGoal();
 	// プレイヤーと罠の当たり判定
-	void HitCheckPlayerToTrap();
+	bool HitCheckPlayerToTrap();
 
 	Player m_player;
 	Stage m_stage;

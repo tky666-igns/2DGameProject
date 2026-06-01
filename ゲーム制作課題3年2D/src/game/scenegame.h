@@ -6,6 +6,7 @@
 #include"../lib/input.h"
 #include "Sound.h"
 #include "player.h"
+#include "hitcheck.h"
 
 
 static const int END_WAIT = 80;
@@ -30,6 +31,7 @@ private:
 	FADE m_fade;
 	Player m_player;
 	Stage m_stage;
+	Hit m_hit;
 public:
 	int Loop();
 	void Draw();

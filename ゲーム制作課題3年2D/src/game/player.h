@@ -18,6 +18,7 @@ public:
 	};
 	VECTOR	m_pos;				// 座標
 	float m_jumpPow;			// ジャンプ力
+	bool m_isActive;			// 生存
 	int m_hndl[GRAPH_NUM];		// 画像ハンドル
 	tagState m_state;			// プレイヤーの状態
 	int m_dir;					// プレイヤーの向き

@@ -35,7 +35,7 @@ int SceneTitle::Loop()
 		}
 		break;
 	case SceneTitle::MAIN:
-		if (CheckHitKey(KEY_INPUT_Z))
+		if (CheckHitKey(KEY_SHOT))
 		{
 			// フェードアウト開始
 			m_fade.RequestFadeOut();

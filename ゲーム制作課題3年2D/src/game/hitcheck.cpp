@@ -122,7 +122,38 @@ void Hit::HitCheckPlayerToGoal()
 }
 
 // プレイヤーと罠の当たり判定
-void Hit::HitCheckPlayerToTrap()
+bool Hit::HitCheckPlayerToTrap()
 {
+	bool isHit = false;	//接触したかどうか
+
+	if (m_player.m_isActive == false)
+	{
+		return false;
+	}
+
+	//敵の数分当たっているかどうか調べる
+	for (int j = 0; j < ENEMY_MAX; j++)
+	{
+		//死んでいる敵は無視
+		if (m_enemy[j].m_isActive == false)
+		{
+			continue;
+		}
+
+		//プレイヤーと敵の当たり判定結果をisHit変数に入れる
+		isHit = CheckHitCircleToCircle(m_pos, 30,
+			m_enemy[j].m_pos, 40);
+
+
+		if (isHit == true)
+		{
+			m_isActive = false;
+			RequestExplosion(m_pos);
+			RequestSound(SEID_EXPLOSION, DX_PLAYTYPE_BACK);
+			return true;
+		}
+
+	}
+	return isHit;
 
 }

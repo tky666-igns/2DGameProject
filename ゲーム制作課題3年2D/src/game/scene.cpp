@@ -2,7 +2,7 @@
 
 // ‰Šú‰»ˆ—
 void SceneMana::Init() {
-	m_sceneID = SCENE_TITLE;
+	m_sceneID = SCENE_GAME;
 	m_title.Init();
 	m_game.Init();
 	m_resualt.Init();

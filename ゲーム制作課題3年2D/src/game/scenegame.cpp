@@ -22,6 +22,7 @@ int Scene::Loop()
 	case INIT:
 		m_stage.Init();
 		m_player.Init();
+		m_endWaitCount = 0;
 		m_state = LOAD;
 		break;
 	case LOAD:
@@ -33,13 +34,23 @@ int Scene::Loop()
 	case STARTWAIT:
 		if (m_fade.IsEndFadeIn())
 		{
+			m_sound.RequestSound(Sound::BGMID_GAME, DX_PLAYTYPE_LOOP);
 			m_state = MAIN;
 		}
 		break;
 	case MAIN:
 		m_stage.Update();
 		m_player.Update();
-		//HitCheckPlayerToStage();
+		//ìñÇΩÇËîªíËèàóù
+		m_hit.HitCheckPlayerToStage();
+
+		if (m_hit.HitCheckPlayerToStage() == true
+			|| m_hit.HitCheckPlayerToTrap() == true)
+		{
+			m_endWaitCount = END_WAIT;
+			m_fade.RequestFadeOut();
+			m_state = ENDWAIT;
+		}
 		break;
 	case ENDWAIT:
 		if (m_fade.IsEndFadeOut()) {
