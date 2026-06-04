@@ -132,14 +132,8 @@ bool Hit::HitCheckPlayerToTrap()
 	}
 
 	//“G‚Ì”•ª“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
-	for (int j = 0; j < ENEMY_MAX; j++)
+	for (int j = 0; j < TRAP_MAX; j++)
 	{
-		//€‚ñ‚Å‚¢‚é“G‚Í–³‹
-		if (m_enemy[j].m_isActive == false)
-		{
-			continue;
-		}
-
 		//ƒvƒŒƒCƒ„[‚Æ“G‚Ì“–‚½‚è”»’èŒ‹‰Ê‚ğisHit•Ï”‚É“ü‚ê‚é
 		isHit = CheckHitCircleToCircle(m_pos, 30,
 			m_enemy[j].m_pos, 40);

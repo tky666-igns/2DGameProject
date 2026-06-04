@@ -21,3 +21,9 @@ void Trap::Exit()
 {
 
 }
+int Trap::Request()
+{
+
+
+	return 0;
+}

@@ -10,7 +10,7 @@ public:
 	void Exit();
 	void Step(VECTOR playerPos);
 	void Draw();
-	void Request();
+	int Request();
 
 	Trap& GetTrap(int id) { return m_trap[id]; }
 

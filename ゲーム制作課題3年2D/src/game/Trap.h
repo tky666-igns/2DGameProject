@@ -12,6 +12,7 @@ public:
 	void Step();
 	void Draw();
 	void Exit();
+	int Request();
 private:
 	VECTOR m_pos;		// 画面の表示位置
 	int m_hdl;			// 画像ハンドル

@@ -20,7 +20,7 @@ void TrapManager::Load()
 
 	for (int i = 0; i < TRAP_MAX; i++)
 	{
-		m_trap[i].Load(THdl);
+		m_trap[i].Load();
 	}
 }
 
@@ -49,15 +49,16 @@ void TrapManager::Draw()
 }
 
 // トラップをリクエスト
-void TrapManager::Request()
+int TrapManager::Request()
 {
 	VECTOR TrapPos = { (float)GetRand(920) - 460.0f, 10.0f, (float)GetRand(920) - 460.0f };
 
 	for (int i = 0; i < TRAP_MAX; i++)
 	{
-		if (m_trap[i].Request(TrapPos) == true)
+		if (m_trap[i].Request() == true)
 		{
 			
 		}
 	}
+	return 0;
 }
