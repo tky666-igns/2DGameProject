@@ -62,6 +62,9 @@
     <ClCompile Include="src\game\Trap.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\TrapManager.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\scenegame.h">
@@ -107,6 +110,9 @@
       <Filter>src\game</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Trap.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\TrapManager.h">
       <Filter>src\game</Filter>
     </ClInclude>
   </ItemGroup>

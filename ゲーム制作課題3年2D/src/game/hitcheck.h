@@ -3,6 +3,7 @@
 #include "player.h"
 #include "stage.h"
 #include "../common.h"
+#include "Trap.h"
 #include "../lib/collision.h"
 
 
@@ -18,4 +19,5 @@ public:
 
 	Player m_player;
 	Stage m_stage;
+	Trap m_trap;
 };
