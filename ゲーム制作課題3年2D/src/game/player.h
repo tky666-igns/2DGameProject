@@ -19,10 +19,10 @@ public:
 	VECTOR	m_pos;				// 座標
 	float m_jumpPow;			// ジャンプ力
 	bool m_isActive;			// 生存
-	int m_hndl[GRAPH_NUM];		// 画像ハンドル
+	int m_hdl[GRAPH_NUM];		// 画像ハンドル
 	tagState m_state;			// プレイヤーの状態
 	int m_dir;					// プレイヤーの向き
-	int m_animCnt;				// アニメーションカウント用
+	int m_animeCnt;				// アニメーションカウント用
 	Input m_nowKey, m_prevKey;	// 今回入力したキー 前回入力したキー
 public:
 	//		プレイヤー初期化

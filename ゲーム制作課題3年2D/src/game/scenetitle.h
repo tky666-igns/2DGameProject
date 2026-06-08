@@ -22,7 +22,7 @@ private:
 	FADE m_fade;
 	Sound m_sound;
 	Input m_nowKey, m_prevKey, m_input;
-	int m_hndl;
+	int m_hdl;
 public:
 	void Init();
 	void Draw();

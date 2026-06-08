@@ -11,9 +11,9 @@ class Hit
 {
 public:
 	// プレイヤーとステージオブジェクトの当たり判定
-	void HitCheckPlayerToStage();
+	bool HitCheckPlayerToStage();
 	// プレイヤーとゴールの当たり判定
-	void HitCheckPlayerToGoal();
+	bool HitCheckPlayerToGoal();
 	// プレイヤーと罠の当たり判定
 	bool HitCheckPlayerToTrap();
 

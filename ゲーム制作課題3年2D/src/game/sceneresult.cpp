@@ -7,18 +7,18 @@ void SceneResult::Init()
 
 int SceneResult::Loop() 
 {
-	int result = -1;
+	int result = 0;
 
 	switch (m_state)
 	{
 	case SceneResult::INIT:
-		m_hndl = -1;
+		m_hdl = -1;
 		m_state = SceneResult::LOAD;
 		break;
 	case SceneResult::LOAD:
-		if (m_hndl == -1)
+		if (m_hdl == -1)
 		{
-			m_hndl = LoadGraph("data/game/RESULT.png");
+			m_hdl = LoadGraph("data/game/RESULT.png");
 		}
 		m_sound.RequestSound(Sound::BGM_TITLE, DX_PLAYTYPE_LOOP);
 		m_fade.RequestFadeIn();
@@ -44,10 +44,10 @@ int SceneResult::Loop()
 		}
 		break;
 	case SceneResult::END:
-		if (m_hndl != -1) 
+		if (m_hdl != -1) 
 		{
-			DeleteGraph(m_hndl);
-			m_hndl = -1;
+			DeleteGraph(m_hdl);
+			m_hdl = -1;
 		}
 		// 破棄
 		m_sound.StopAllSound();
@@ -66,7 +66,7 @@ void SceneResult::Draw() {
 	case ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "リザルトシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
-			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hndl, TRUE);
+			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hdl, TRUE);
 		break;
 	}
 }

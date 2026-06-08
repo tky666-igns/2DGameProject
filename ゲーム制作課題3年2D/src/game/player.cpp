@@ -29,13 +29,13 @@ void Player::Init()
 	m_pos.x = START_POS_X;
 	m_pos.y = START_POS_Y;
 	m_jumpPow = 0.0f;
-	m_animCnt = 0;
+	m_animeCnt = 0;
 	m_state = PLAYER_WAIT;
 	m_dir = RIGHT;
 
 	for (int i = 0; i < GRAPH_NUM; i++)
 	{
-		m_hndl[i] = -1;
+		m_hdl[i] = -1;
 	}
 }
 
@@ -45,10 +45,10 @@ void Player::Init()
 //-------------------------------
 void Player::Load()
 {
-	if (m_hndl[0] == -1)
+	if (m_hdl[0] == -1)
 	{
 		LoadDivGraph("graph/player00.png", GRAPH_NUM, 3, 4,
-			PLAYER_SIZE_X, PLAYER_SIZE_Y, m_hndl);
+			PLAYER_SIZE_X, PLAYER_SIZE_Y, m_hdl);
 	}
 }
 
@@ -143,7 +143,7 @@ void Player::Update()
 	// アニメーション更新
 	// 今回はアニメーション4回分をループして再生
 	// 1つのアニメーションにつき10カウント数えてから次へいく予定
-	m_animCnt = (m_animCnt + 1) % 40;
+	m_animeCnt = (m_animeCnt + 1) % 40;
 }
 
 
@@ -152,12 +152,12 @@ void Player::Update()
 //-------------------------------
 void Player::Draw()
 {
-	int hndlNum = g_iAnimID[m_dir][m_animCnt / 10];
+	int hndlNum = g_iAnimID[m_dir][m_animeCnt / 10];
 	VECTOR offset = GetOffset();
 	int x = (int)(m_pos.x - offset.x);
 	int y = (int)(m_pos.y - offset.y);
 
-	DrawRotaGraph(x, y, 1.0f, 0.0f, m_hndl[hndlNum], TRUE);
+	DrawRotaGraph(x, y, 1.0f, 0.0f, m_hdl[hndlNum], TRUE);
 }
 
 
@@ -168,10 +168,10 @@ void Player::Exit()
 {
 	for (int i = 0; i < GRAPH_NUM; i++)
 	{
-		if (m_hndl[i] != -1)
+		if (m_hdl[i] != -1)
 		{
-			DeleteGraph(m_hndl[i]);
-			m_hndl[i] = -1;
+			DeleteGraph(m_hdl[i]);
+			m_hdl[i] = -1;
 		}
 	}
 }

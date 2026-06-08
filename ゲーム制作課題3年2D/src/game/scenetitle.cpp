@@ -15,13 +15,13 @@ int SceneTitle::Loop()
 	{
 	case SceneTitle::INIT:
 		// 初期化関連
-		m_hndl = -1;
+		m_hdl = -1;
 		m_state = SceneTitle::LOAD;
 		break;
 	case SceneTitle::LOAD:
-		if (m_hndl == -1)
+		if (m_hdl == -1)
 		{
-			m_hndl = LoadGraph("data/game/TITLE.png");
+			m_hdl = LoadGraph("data/game/TITLE.png");
 		}
 		// フェードイン開始
 		m_fade.FADE::RequestFadeIn();
@@ -35,7 +35,7 @@ int SceneTitle::Loop()
 		}
 		break;
 	case SceneTitle::MAIN:
-		if (CheckHitKey(KEY_SHOT))
+		if (CheckHitKey(KEY_INPUT_Z) == true)
 		{
 			// フェードアウト開始
 			m_fade.RequestFadeOut();
@@ -49,10 +49,10 @@ int SceneTitle::Loop()
 		}
 		break;
 	case SceneTitle::END:
-		if (m_hndl != -1) 
+		if (m_hdl != -1) 
 		{
-			DeleteGraph(m_hndl);
-			m_hndl = -1;
+			DeleteGraph(m_hdl);
+			m_hdl = -1;
 		}
 		// 破棄
 		m_sound.StopAllSound();
@@ -74,7 +74,7 @@ void SceneTitle::Draw() {
 		// タイトル画面描画
 		DrawFormatString(20, 20, WHITE, "タイトルシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
-			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hndl, TRUE);
+			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hdl, TRUE);
 
 		break;
 	}

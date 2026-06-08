@@ -13,7 +13,7 @@ public:
 
 		SOUND_NUM
 	};
-	int m_hndl[SOUND_NUM];
+	int m_hdl[SOUND_NUM];
 	//ƒf[ƒ^‚ğ‰Šú‰»
 	void Init();
 

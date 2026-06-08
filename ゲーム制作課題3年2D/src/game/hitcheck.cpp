@@ -2,7 +2,7 @@
 
 
 // プレイヤーとステージオブジェクトの当たり判定
-void Hit::HitCheckPlayerToStage()
+bool Hit::HitCheckPlayerToStage()
 {
 	bool isHitGround = false;
 	
@@ -113,12 +113,15 @@ void Hit::HitCheckPlayerToStage()
 
 	if (!isHitGround) m_player.SetJumpPlayer();
 
+	return 0;
+
 }
 
 // プレイヤーとゴールの当たり判定
-void Hit::HitCheckPlayerToGoal()
+bool Hit::HitCheckPlayerToGoal()
 {
 
+	return 0;
 }
 
 // プレイヤーと罠の当たり判定
@@ -132,22 +135,22 @@ bool Hit::HitCheckPlayerToTrap()
 	}
 
 	//敵の数分当たっているかどうか調べる
-	for (int j = 0; j < TRAP_MAX; j++)
-	{
-		//プレイヤーと敵の当たり判定結果をisHit変数に入れる
-		isHit = CheckHitCircleToCircle(m_pos, 30,
-			m_enemy[j].m_pos, 40);
+	//for (int j = 0; j < TRAP_MAX; j++)
+	//{
+	//	//プレイヤーと敵の当たり判定結果をisHit変数に入れる
+	//	isHit = CheckHitCircleToCircle(m_pos, 30,
+	//		m_enemy[j].m_pos, 40);
 
 
-		if (isHit == true)
-		{
-			m_isActive = false;
-			RequestExplosion(m_pos);
-			RequestSound(SEID_EXPLOSION, DX_PLAYTYPE_BACK);
-			return true;
-		}
+	//	if (isHit == true)
+	//	{
+	//		m_isActive = false;
+	//		RequestExplosion(m_pos);
+	//		RequestSound(SEID_EXPLOSION, DX_PLAYTYPE_BACK);
+	//		return true;
+	//	}
 
-	}
+	//}
 	return isHit;
 
 }

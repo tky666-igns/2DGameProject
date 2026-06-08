@@ -13,7 +13,7 @@ void Sound::Init()
 {
 	for (int i = 0; i < SOUND_NUM; i++)
 	{
-		m_hndl[i] = -1;
+		m_hdl[i] = -1;
 	}
 }
 
@@ -23,9 +23,9 @@ void Sound::Load()
 {
 	for (int i = 0; i < SOUND_NUM; i++)
 	{
-		if (m_hndl[i] == -1)
+		if (m_hdl[i] == -1)
 		{
-			m_hndl[i] = LoadSoundMem(SOUND_PATH[i]);
+			m_hdl[i] = LoadSoundMem(SOUND_PATH[i]);
 		}
 	}
 }
@@ -36,10 +36,10 @@ void Sound::Exit()
 	//すでに音がロードされていたら-1ではなくなっている
 	for (int i = 0; i < SOUND_NUM; i++)
 	{
-		if (m_hndl[i] != -1)
+		if (m_hdl[i] != -1)
 		{
-			DeleteSoundMem(m_hndl[i]);
-			m_hndl[i] = -1;
+			DeleteSoundMem(m_hdl[i]);
+			m_hdl[i] = -1;
 		}
 	}
 }
@@ -47,13 +47,13 @@ void Sound::Exit()
 //音の再生要請
 void Sound::RequestSound(int soundID, int type)
 {
-	PlaySoundMem(m_hndl[soundID], type);
+	PlaySoundMem(m_hdl[soundID], type);
 }
 
 //音の停止要請
 void Sound::StopSound(int soundID)
 {
-	StopSoundMem(m_hndl[soundID]);
+	StopSoundMem(m_hdl[soundID]);
 }
 
 //すべての音の停止要請

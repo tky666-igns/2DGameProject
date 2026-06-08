@@ -19,7 +19,7 @@ private:
 		NUM
 	};
 	tagSceneRESULT m_state;
-	int m_hndl;
+	int m_hdl;
 	FADE m_fade;
 	Sound m_sound;
 
