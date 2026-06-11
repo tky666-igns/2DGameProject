@@ -19,7 +19,7 @@ private:
 
 	SceneTitle m_title;
 	Scene m_game;
-	SceneResult m_resualt;
+	SceneResult m_res;
 	Sound m_sound;
 	FADE m_fade;
 

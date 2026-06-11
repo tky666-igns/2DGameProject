@@ -5,12 +5,15 @@
 void SceneTitle::Init()
 {
 	m_state = INIT;
+	m_hdl = -1;
 }
 
 // 実行処理
 int SceneTitle::Loop() 
 {
+
 	int result = -1;
+
 	switch (m_state)
 	{
 	case SceneTitle::INIT:
@@ -35,6 +38,7 @@ int SceneTitle::Loop()
 		}
 		break;
 	case SceneTitle::MAIN:
+		// Zキーで次の場面へ
 		if (CheckHitKey(KEY_INPUT_Z) == true)
 		{
 			// フェードアウト開始

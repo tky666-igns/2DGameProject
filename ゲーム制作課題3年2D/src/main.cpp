@@ -42,7 +42,6 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		ScreenFlip();
 
 	}
-
 	// 終了前処理
 	DxLib_End();			// ＤＸライブラリ使用の終了処理
 

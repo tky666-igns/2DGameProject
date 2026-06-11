@@ -3,10 +3,10 @@
 // 初期化処理
 void SceneMana::Init() {
 	m_sceneID = SCENE_TITLE;
+	m_fade.Init();
 	m_title.Init();
 	m_game.Init();
-	m_resualt.Init();
-	m_fade.Init();
+	m_res.Init();
 	m_sound.Init();
 	m_sound.Load();
 }
@@ -14,13 +14,13 @@ void SceneMana::Init() {
 // デストラクタ
 SceneMana::~SceneMana()
 {
-	m_sound.Sound::Exit();
+	m_sound.Exit();
 }
 
 // 実行処理
 int SceneMana::Loop()
 {
-	int result = -1;
+	int result = 0;
 	// ゲームが終了したか外部に伝えるため
 	switch (m_sceneID)
 	{
@@ -37,7 +37,7 @@ int SceneMana::Loop()
 		}
 		break;
 	case SceneMana::SCENE_RESULT:
-		if (m_resualt.Loop() != -1)
+		if (m_res.Loop() != -1)
 		{
 			m_sceneID = SceneMana::SCENE_TITLE;
 
@@ -48,7 +48,7 @@ int SceneMana::Loop()
 	// フェード処理の更新
 	m_fade.Step();
 	// 本編が終了したのか伝える
-	return 0;
+	return result;
 }
 
 // 描画処理
@@ -63,7 +63,7 @@ void SceneMana::Draw()
 		m_game.Draw();
 		break;
 	case SceneMana::SCENE_RESULT:
-		m_resualt.Draw();
+		m_res.Draw();
 		break;
 	}
 	m_fade.Draw();
