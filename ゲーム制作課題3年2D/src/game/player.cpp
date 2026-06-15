@@ -16,7 +16,7 @@ enum tagDir{
 	LEFT
 };
 
-static const int g_iAnimID[][4] = {
+static const int m_iAniID[][4] = {
 	{ 0, 1, 2, 1 }, { 3, 4, 5, 4 }, { 6, 7, 8, 7 }, { 9, 10, 11, 10 }
 };
 
@@ -32,6 +32,8 @@ void Player::Init()
 	m_animeCnt = 0;
 	m_state = PLAYER_WAIT;
 	m_dir = RIGHT;
+
+
 
 	for (int i = 0; i < GRAPH_NUM; i++)
 	{
@@ -152,12 +154,12 @@ void Player::Update()
 //-------------------------------
 void Player::Draw()
 {
-	int hndlNum = g_iAnimID[m_dir][m_animeCnt / 10];
+	int hdlNum = m_iAniID[m_dir][m_animeCnt / 10];
 	VECTOR offset = GetOffset();
 	int x = (int)(m_pos.x - offset.x);
 	int y = (int)(m_pos.y - offset.y);
 
-	DrawRotaGraph(x, y, 1.0f, 0.0f, m_hdl[hndlNum], TRUE);
+	DrawRotaGraph(x, y, 1.0f, 0.0f, m_hdl[hdlNum], TRUE);
 }
 
 

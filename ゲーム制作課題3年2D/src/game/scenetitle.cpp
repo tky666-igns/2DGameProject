@@ -12,8 +12,6 @@ void SceneTitle::Init()
 int SceneTitle::Loop() 
 {
 
-	int result = -1;
-
 	switch (m_state)
 	{
 	case SceneTitle::INIT:
@@ -27,7 +25,7 @@ int SceneTitle::Loop()
 			m_hdl = LoadGraph("data/game/TITLE.png");
 		}
 		// フェードイン開始
-		m_fade.FADE::RequestFadeIn();
+		m_fade.RequestFadeIn();
 		m_sound.RequestSound(m_sound.BGM_TITLE, DX_PLAYTYPE_LOOP);
 		m_state = SceneTitle::STARTWAIT;
 		break;
@@ -39,7 +37,7 @@ int SceneTitle::Loop()
 		break;
 	case SceneTitle::MAIN:
 		// Zキーで次の場面へ
-		if (CheckHitKey(KEY_INPUT_Z) == true)
+		if (CheckHitKey(KEY_INPUT_RETURN))
 		{
 			// フェードアウト開始
 			m_fade.RequestFadeOut();
@@ -61,11 +59,11 @@ int SceneTitle::Loop()
 		// 破棄
 		m_sound.StopAllSound();
 		m_state = INIT;
-		result = 0;
+		return 1;
 		break;
 	}
 
-	return result;
+	return 0;
 }
 
 // 描画処理
@@ -79,7 +77,6 @@ void SceneTitle::Draw() {
 		DrawFormatString(20, 20, WHITE, "タイトルシーン(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
 			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hdl, TRUE);
-
 		break;
 	}
 }
