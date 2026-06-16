@@ -40,6 +40,9 @@ void Fps::Print(void)
 {
 	//１フレーム進んだはずと判断
 	m_count++;
+
+	// 最新の時間を取得
+	m_nowTime = GetNowCount();
 	//前回の時間と今回の時間の差を取得
 	int difTime = m_nowTime - m_prevDrawTime;
 

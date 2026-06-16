@@ -9,6 +9,7 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
 	ChangeWindowMode(TRUE);
+	SetGraphMode(1280, 720, 32);
 #ifndef _DEBUG
 	// リリース版はログを出さない
 	SetOutApplicationLogValidFlag(false);
@@ -21,23 +22,27 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetTransColor(255, 0, 255);	// 透過色指定
 
-	SceneMana g_game;
-	Input g_input;
-	g_game.Init();
-	g_input.InitInput();
+	SceneMana g_sm;
+	Fps g_fps;
+
+	g_fps.Init();
+
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
 	{
 		//エスケープキーが押されたら終了
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) break;
 
+		if (!g_fps.IsNextFrame())continue;
+
 		ClearDrawScreen();
 
 		// 計算処理
-		g_input.UpdateInput();
-		g_game.Loop();
+		if (g_sm.Loop() == 1)break;
+		g_fps.Step();
 		// 描画処理
-		g_game.Draw();
+		g_sm.Draw();
+		g_fps.Print();
 
 		ScreenFlip();
 
