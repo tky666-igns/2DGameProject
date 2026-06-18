@@ -1,11 +1,16 @@
 #include "scenetitle.h"
 
 
-// 初期化処理
-void SceneTitle::Init()
+// コンストラクタ
+SceneTitle::SceneTitle()
 {
 	m_state = INIT;
 	m_hdl = -1;
+}
+// デストラクタ
+SceneTitle::~SceneTitle()
+{
+
 }
 
 // 実行処理
@@ -16,7 +21,7 @@ int SceneTitle::Loop()
 	{
 	case SceneTitle::INIT:
 		// 初期化関連
-		m_hdl = -1;
+		//m_hdl = -1;
 		m_state = SceneTitle::LOAD;
 		break;
 	case SceneTitle::LOAD:
@@ -24,9 +29,10 @@ int SceneTitle::Loop()
 		{
 			m_hdl = LoadGraph("data/game/TITLE.png");
 		}
+		// BGM鳴らす
+		m_sound.RequestSound(m_sound.BGM_TITLE, DX_PLAYTYPE_LOOP);
 		// フェードイン開始
 		m_fade.RequestFadeIn();
-		m_sound.RequestSound(m_sound.BGM_TITLE, DX_PLAYTYPE_LOOP);
 		m_state = SceneTitle::STARTWAIT;
 		break;
 	case SceneTitle::STARTWAIT:
@@ -51,15 +57,14 @@ int SceneTitle::Loop()
 		}
 		break;
 	case SceneTitle::END:
+		// 音楽止めて次へ
+		m_sound.StopAllSound();
 		if (m_hdl != -1) 
 		{
 			DeleteGraph(m_hdl);
 			m_hdl = -1;
 		}
-		// 破棄
-		m_sound.StopAllSound();
-		m_state = INIT;
-		return 1;
+		m_state = SceneTitle::INIT;
 		break;
 	}
 
