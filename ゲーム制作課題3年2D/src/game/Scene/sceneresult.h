@@ -19,14 +19,18 @@ private:
 		NUM
 	};
 	tagSceneRESULT m_state;
-	int m_hdl;
 	FADE m_fade;
 	Sound m_sound;
+	Input m_in;
+	int m_hdl;
 
 public:
+	// ‰Šú‰»
 	void Init();
-	void Draw();
+	// Àsˆ—
 	int Step();
+	// •`‰æˆ—
+	void Draw();
 };
 
 

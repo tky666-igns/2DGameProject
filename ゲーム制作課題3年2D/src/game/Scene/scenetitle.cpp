@@ -30,14 +30,14 @@ int SceneTitle::Step()
 		m_state = SceneTitle::STARTWAIT;
 		break;
 	case SceneTitle::STARTWAIT:
-		if (m_fade.IsEndFadeIn()) 
+		if (m_fade.IsEndFadeIn() == true) 
 		{
 			m_state = SceneTitle::MAIN;
 		}
 		break;
 	case SceneTitle::MAIN:
 		// Zキーで次の場面へ
-		if (CheckHitKey(KEY_INPUT_RETURN)==true)
+		if (m_in.IsInputTrg(KEY_SHOT) == true)
 		{
 			// フェードアウト開始
 			m_fade.RequestFadeOut();
@@ -45,7 +45,7 @@ int SceneTitle::Step()
 		}
 		break;
 	case SceneTitle::ENDWAIT:
-		if (m_fade.IsEndFadeOut())
+		if (m_fade.IsEndFadeOut() == true)
 		{
 			m_state = SceneTitle::END;
 		}
@@ -73,9 +73,9 @@ void SceneTitle::Draw() {
 	case MAIN:
 	case ENDWAIT:
 		// タイトル画面描画
-		DrawFormatString(20, 20, WHITE, "タイトルシーン(Z)");
-		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
-			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hdl, TRUE);
+		DrawFormatString(20, 20, WHITE, "次のシーンへ(Z)");
+		DrawRotaGraph((int)(WINDOW_SIZE_X / 1.3),
+			(int)WINDOW_SIZE_Y / 1.3, 1.0f, 0.0f, m_hdl, TRUE);
 		break;
 	}
 }

@@ -25,6 +25,7 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SceneMana g_sm;
 	Fps g_fps;
 	FADE g_fade;
+	g_sm.Init();
 	g_fade.Init();
 	g_fps.Init();
 

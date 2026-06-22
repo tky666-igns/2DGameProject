@@ -21,6 +21,7 @@ private:
 	tagSceneTITLE m_state;
 	FADE m_fade;
 	Sound m_sound;
+	Input m_in;
 	int m_hdl;
 public:
 	// ‰Šú‰»

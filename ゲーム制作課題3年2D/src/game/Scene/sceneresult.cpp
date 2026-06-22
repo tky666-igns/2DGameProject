@@ -7,8 +7,6 @@ void SceneResult::Init()
 
 int SceneResult::Step() 
 {
-	int result = 0;
-
 	switch (m_state)
 	{
 	case SceneResult::INIT:
@@ -21,29 +19,31 @@ int SceneResult::Step()
 			m_hdl = LoadGraph("data/game/RESULT.png");
 		}
 		m_sound.RequestSound(Sound::BGM_TITLE, DX_PLAYTYPE_LOOP);
+		// フェードイン開始
 		m_fade.RequestFadeIn();
 		m_state = SceneResult::STARTWAIT;
 		break;
 	case SceneResult::STARTWAIT:
-		if (m_fade.IsEndFadeIn())
+		if (m_fade.IsEndFadeIn() == true)
 		{
 			m_state = SceneResult::MAIN;
 		}
 		break;
 	case SceneResult::MAIN:
-		if (CheckHitKey(KEY_INPUT_Z))
+		if (m_in.IsInputTrg(KEY_SHOT))
 		{
 			m_fade.RequestFadeOut();
 			m_state = SceneResult::ENDWAIT;
 		}
 		break;
 	case SceneResult::ENDWAIT:
-		if (m_fade.IsEndFadeOut())
+		if (m_fade.IsEndFadeOut() == true)
 		{
 			m_state = SceneResult::END;
 		}
 		break;
 	case SceneResult::END:
+
 		if (m_hdl != -1) 
 		{
 			DeleteGraph(m_hdl);
@@ -52,10 +52,10 @@ int SceneResult::Step()
 		// 破棄
 		m_sound.StopAllSound();
 		m_state = SceneResult::INIT;
-		result = 0;
+		return 1;
 	}
 
-	return result;
+	return 0;
 }
 
 void SceneResult::Draw() {
@@ -64,9 +64,9 @@ void SceneResult::Draw() {
 	case STARTWAIT:
 	case MAIN:
 	case ENDWAIT:
-		DrawFormatString(20, 20, WHITE, "リザルトシーン(Z)");
-		DrawRotaGraph((int)(WINDOW_SIZE_X / 2),
-			(int)WINDOW_SIZE_Y / 2, 1.0f, 0.0f, m_hdl, TRUE);
+		DrawFormatString(20, 20, WHITE, "次のシーンへ(Z)");
+		DrawRotaGraph((int)(WINDOW_SIZE_X / 1.3),
+			(int)WINDOW_SIZE_Y / 1.3, 1.0f, 0.0f, m_hdl, TRUE);
 		break;
 	}
 }

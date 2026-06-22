@@ -13,7 +13,6 @@ public:
 	unsigned int m_nowKey;	// 今回入力したキー
 	unsigned int m_preKey;	// 前回入力したキー
 
-public:
 	//キー入力情報の初期化
 	void InitInput();
 	//キー入力情報を更新
