@@ -34,9 +34,10 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) break;
 
 		if (!g_fps.IsNextFrame())continue;
-
+		// •`‰æ‚µ‚½‰æ‘œ‚ğ‚·‚×‚ÄÁ‚·
 		ClearDrawScreen();
 
+		// ƒQ[ƒ€–{‘Ì‚Ì–½—ß‚Í‚±‚ê‚æ‚è‰º‚É‘‚­
 		// ŒvZˆ—
 		if (g_sm.Loop() == 1)break;
 		g_fps.Step();

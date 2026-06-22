@@ -15,17 +15,29 @@
     <Filter Include="src\lib">
       <UniqueIdentifier>{53f91441-df2a-4163-9d59-73a1cb4e0793}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\game\Player">
+      <UniqueIdentifier>{4f988ba6-bdbb-4df7-9e30-e396e6586155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\Goal">
+      <UniqueIdentifier>{f858903b-974e-4645-bfee-7e0c6a6d637e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\Scene">
+      <UniqueIdentifier>{4b851847-0b51-43d5-8432-9ea0fed45c51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\Hitcheck">
+      <UniqueIdentifier>{3313e3ee-2b29-48bc-932f-19e74ae92291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\Trap">
+      <UniqueIdentifier>{190ae2a2-f981-4a5c-b754-72285a1fbad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\Sound">
+      <UniqueIdentifier>{28cba8e2-c425-4544-bcdc-6602893e9106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\Stage">
+      <UniqueIdentifier>{ff0568f2-5352-42de-9b4d-581d72f6221f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\game\scenegame.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\stage.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\player.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
     <ClCompile Include="src\lib\input.cpp">
       <Filter>src\lib</Filter>
     </ClCompile>
@@ -41,41 +53,41 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\hitcheck.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\scene.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\scenetitle.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\sceneresult.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\Sound.cpp">
-      <Filter>src\game</Filter>
+    <ClCompile Include="src\game\player.cpp">
+      <Filter>src\game\Player</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Goal.cpp">
-      <Filter>src\game</Filter>
+      <Filter>src\game\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\scene.cpp">
+      <Filter>src\game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\scenegame.cpp">
+      <Filter>src\game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\sceneresult.cpp">
+      <Filter>src\game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\scenetitle.cpp">
+      <Filter>src\game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\hitcheck.cpp">
+      <Filter>src\game\Hitcheck</Filter>
     </ClCompile>
     <ClCompile Include="src\game\Trap.cpp">
-      <Filter>src\game</Filter>
+      <Filter>src\game\Trap</Filter>
     </ClCompile>
     <ClCompile Include="src\game\TrapManager.cpp">
-      <Filter>src\game</Filter>
+      <Filter>src\game\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Sound.cpp">
+      <Filter>src\game\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\stage.cpp">
+      <Filter>src\game\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\game\scenegame.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\stage.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\player.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
     <ClInclude Include="src\lib\input.h">
       <Filter>src\lib</Filter>
     </ClInclude>
@@ -91,29 +103,38 @@
     <ClInclude Include="src\common.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\hitcheck.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\scene.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\scenetitle.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\sceneresult.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\Sound.h">
-      <Filter>src\game</Filter>
+    <ClInclude Include="src\game\player.h">
+      <Filter>src\game\Player</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Goal.h">
-      <Filter>src\game</Filter>
+      <Filter>src\game\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\scene.h">
+      <Filter>src\game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\scenegame.h">
+      <Filter>src\game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\sceneresult.h">
+      <Filter>src\game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\scenetitle.h">
+      <Filter>src\game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\hitcheck.h">
+      <Filter>src\game\Hitcheck</Filter>
     </ClInclude>
     <ClInclude Include="src\game\Trap.h">
-      <Filter>src\game</Filter>
+      <Filter>src\game\Trap</Filter>
     </ClInclude>
     <ClInclude Include="src\game\TrapManager.h">
-      <Filter>src\game</Filter>
+      <Filter>src\game\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\Sound.h">
+      <Filter>src\game\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\stage.h">
+      <Filter>src\game\Stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

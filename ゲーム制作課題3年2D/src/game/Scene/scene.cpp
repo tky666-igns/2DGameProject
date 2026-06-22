@@ -4,7 +4,7 @@
 void SceneMana::Init() {
 	m_sceneID = SCENE_TITLE;
 	m_fade.Init();
-	m_title.Init();
+	//m_title.Init();
 	m_game.Init();
 	m_res.Init();
 	m_sound.Init();
