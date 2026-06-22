@@ -22,7 +22,7 @@ void Stage::Init()
 	// ‰æ‘œŠÖ˜A
 	for (int i = 0; i < STAGEID_NUM; i++)
 	{
-		m_graphHndl[i] = -1;
+		m_graphHdl[i] = -1;
 	}
 }
 
@@ -57,7 +57,7 @@ void Stage::Load()
 	};
 	for (int i = 0; i < STAGEID_NUM; i++)
 	{
-		m_graphHndl[i] = LoadGraph(graphName[i]);
+		m_graphHdl[i] = LoadGraph(graphName[i]);
 	}
 	//---------------------------------------------------------
 }
@@ -86,7 +86,7 @@ void Stage::Draw()
 			int posX = (int)(m_stageData[y][x].m_pos.x - offset.x);
 			int posY = (int)(m_stageData[y][x].m_pos.y - offset.y);
 			DrawRotaGraph(posX, posY, 1.0, 0.0,
-				m_graphHndl[m_stageData[y][x].m_state], TRUE);
+				m_graphHdl[m_stageData[y][x].m_state], TRUE);
 		}
 	}
 }
@@ -99,9 +99,9 @@ void Stage::Exit()
 {
 	for (int i = 0; i < STAGEID_NUM; i++)
 	{
-		if (m_graphHndl[i] != -1)
+		if (m_graphHdl[i] != -1)
 		{
-			DeleteGraph(m_graphHndl[i]);
+			DeleteGraph(m_graphHdl[i]);
 		}
 	}
 }

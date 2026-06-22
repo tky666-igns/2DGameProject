@@ -12,6 +12,12 @@ static const float GRAVITY = 0.1f;
 static const int STAGE_X	= 40;
 static const int STAGE_Y	= 15;
 
+// フェードイン・アウトの速度
+static const int FADE_SPD = 10;	
+// フェード画面の横幅・立幅
+static const int FADE_SIZE_X = 640;
+static const int FADE_SIZE_Y = 480;
+
 // ステージのタイプ
 enum tagStageID{
 	STAGEID_BLOCK,		// 床・壁
@@ -22,8 +28,8 @@ enum tagStageID{
 };
 
 // プレイヤーのサイズ
-static const float PLAYER_SIZE_X = 32.0f;
-static const float PLAYER_SIZE_Y = 32.0f;
+static const int PLAYER_SIZE_X = 32;
+static const int PLAYER_SIZE_Y = 32;
 
 // ステージに配置する物体のサイズ
 static const float OBJECT_SIZE_X = 32.0f;

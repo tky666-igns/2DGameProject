@@ -1,9 +1,9 @@
 #pragma once
 #include <DxLib.h>
-#include "../lib/fade.h"
-#include "../common.h"
-#include"../lib/input.h"
-#include "Sound.h"
+#include "../../lib/fade.h"
+#include "../../common.h"
+#include"../../lib/input.h"
+#include "../Sound/Sound.h"
 
 class SceneResult
 {
@@ -26,7 +26,7 @@ private:
 public:
 	void Init();
 	void Draw();
-	int Loop();
+	int Step();
 };
 
 

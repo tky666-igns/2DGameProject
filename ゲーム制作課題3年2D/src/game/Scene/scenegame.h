@@ -1,15 +1,15 @@
 #pragma once
-#include "stage.h"
+#include "../Stage/stage.h"
 #include <DxLib.h>
-#include "../lib/fade.h"
-#include "../common.h"
-#include"../lib/input.h"
-#include "Sound.h"
-#include "player.h"
-#include "hitcheck.h"
+#include "../../lib/fade.h"
+#include "../../common.h"
+#include"../../lib/input.h"
+#include "../Sound/Sound.h"
+#include "../Player/player.h"
+#include "../Hitcheck/hitcheck.h"
 
 
-static const int END_WAIT = 80;
+static const int END_WAIT = 60;
 
 class Scene
 {
@@ -33,12 +33,8 @@ private:
 	Stage m_stage;
 	Hit m_hit;
 public:
-	int Loop();
+	int Step();
 	void Draw();
-	~Scene();
 	void Init();
-	void Load();
-	void Step();
-	void Exit();
 
 };

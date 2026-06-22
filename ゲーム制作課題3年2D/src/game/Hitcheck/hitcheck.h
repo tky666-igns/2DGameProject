@@ -1,10 +1,11 @@
 #pragma once
 #include <math.h>
-#include "player.h"
-#include "stage.h"
-#include "../common.h"
-#include "Trap.h"
-#include "../lib/collision.h"
+#include "../Player/player.h"
+#include "../Stage/stage.h"
+#include "../../common.h"
+#include "../Trap/Trap.h"
+#include "../Trap/TrapManager.h"
+#include "../../lib/collision.h"
 
 
 class Hit

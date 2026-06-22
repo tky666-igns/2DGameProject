@@ -3,8 +3,8 @@
 #include "scenetitle.h"
 #include "scenegame.h"
 #include "sceneresult.h"
-#include "../lib/fade.h"
-#include "Sound.h"
+#include "../../lib/fade.h"
+#include "../Sound/Sound.h"
 
 class SceneMana
 {
@@ -26,9 +26,8 @@ private:
 	tagScene m_sceneID;
 public:
 	void Init();
-	int Loop();
+	int Step();
 	void Draw();
-	~SceneMana();
 };
 
 

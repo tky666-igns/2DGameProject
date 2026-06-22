@@ -1,6 +1,6 @@
 #pragma once
 #include "Trap.h"
-#include "../game/player.h"
+#include "../Player/player.h"
 
 class TrapManager
 {

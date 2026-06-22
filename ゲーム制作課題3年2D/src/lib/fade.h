@@ -1,17 +1,16 @@
 #pragma once
-
-static const int FADE_SPD(10);	// フェードイン・アウトの速度
-
+#include <DxLib.h>
+#include "../common.h"
 
 class FADE
 {
 public:
 	enum tagFadeScene
 	{
-		FADE_NON,
-		FADE_IN,
-		FADE_OUT,
-		FADE_OUT_WAIT,
+		FADE_NON,		// フェードなし
+		FADE_IN,		// フェードイン中(徐々に画面が出現)
+		FADE_OUT,		// フェードアウト中(徐々に画面が消える)
+		FADE_OUT_WAIT,	// フェードアウト後の真っ暗状態
 	};
 
 	tagFadeScene m_state;
@@ -20,7 +19,7 @@ public:
 	//フェードの初期化
 	void Init();
 	//フェードの処理更新
-	int Step();
+	void Update();
 	//フェードの描画管理
 	void Draw();
 	//フェードインリクエスト

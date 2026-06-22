@@ -8,6 +8,6 @@ public:
 	void Load();
 	void Draw();
 private:
-	int m_hndl;
+	int m_hdl;
 
 };

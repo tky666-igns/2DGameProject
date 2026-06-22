@@ -2,26 +2,20 @@
 
 
 // コンストラクタ
-SceneTitle::SceneTitle()
+void SceneTitle::Init()
 {
 	m_state = INIT;
-	m_hdl = -1;
-}
-// デストラクタ
-SceneTitle::~SceneTitle()
-{
-
 }
 
 // 実行処理
-int SceneTitle::Loop() 
+int SceneTitle::Step() 
 {
 
 	switch (m_state)
 	{
 	case SceneTitle::INIT:
 		// 初期化関連
-		//m_hdl = -1;
+		m_hdl = -1;
 		m_state = SceneTitle::LOAD;
 		break;
 	case SceneTitle::LOAD:
@@ -43,7 +37,7 @@ int SceneTitle::Loop()
 		break;
 	case SceneTitle::MAIN:
 		// Zキーで次の場面へ
-		if (CheckHitKey(KEY_INPUT_RETURN))
+		if (CheckHitKey(KEY_INPUT_RETURN)==true)
 		{
 			// フェードアウト開始
 			m_fade.RequestFadeOut();
@@ -65,7 +59,7 @@ int SceneTitle::Loop()
 			m_hdl = -1;
 		}
 		m_state = SceneTitle::INIT;
-		break;
+		return 1;
 	}
 
 	return 0;

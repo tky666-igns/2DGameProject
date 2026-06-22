@@ -11,17 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\game\Goal.cpp" />
-    <ClCompile Include="src\game\hitcheck.cpp" />
-    <ClCompile Include="src\game\player.cpp" />
-    <ClCompile Include="src\game\scene.cpp" />
-    <ClCompile Include="src\game\scenegame.cpp" />
-    <ClCompile Include="src\game\sceneresult.cpp" />
-    <ClCompile Include="src\game\scenetitle.cpp" />
-    <ClCompile Include="src\game\Sound.cpp" />
-    <ClCompile Include="src\game\stage.cpp" />
-    <ClCompile Include="src\game\Trap.cpp" />
-    <ClCompile Include="src\game\TrapManager.cpp" />
+    <ClCompile Include="src\game\Goal\Goal.cpp" />
+    <ClCompile Include="src\game\Hitcheck\hitcheck.cpp" />
+    <ClCompile Include="src\game\Player\player.cpp" />
+    <ClCompile Include="src\game\Scene\scene.cpp" />
+    <ClCompile Include="src\game\Scene\scenegame.cpp" />
+    <ClCompile Include="src\game\Scene\sceneresult.cpp" />
+    <ClCompile Include="src\game\Scene\scenetitle.cpp" />
+    <ClCompile Include="src\game\Sound\Sound.cpp" />
+    <ClCompile Include="src\game\Stage\stage.cpp" />
+    <ClCompile Include="src\game\Trap\Trap.cpp" />
+    <ClCompile Include="src\game\Trap\TrapManager.cpp" />
     <ClCompile Include="src\lib\collision.cpp" />
     <ClCompile Include="src\lib\debug.cpp" />
     <ClCompile Include="src\lib\fade.cpp" />
@@ -30,17 +30,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.h" />
-    <ClInclude Include="src\game\Goal.h" />
-    <ClInclude Include="src\game\hitcheck.h" />
-    <ClInclude Include="src\game\player.h" />
-    <ClInclude Include="src\game\scene.h" />
-    <ClInclude Include="src\game\scenegame.h" />
-    <ClInclude Include="src\game\sceneresult.h" />
-    <ClInclude Include="src\game\scenetitle.h" />
-    <ClInclude Include="src\game\Sound.h" />
-    <ClInclude Include="src\game\stage.h" />
-    <ClInclude Include="src\game\Trap.h" />
-    <ClInclude Include="src\game\TrapManager.h" />
+    <ClInclude Include="src\game\Goal\Goal.h" />
+    <ClInclude Include="src\game\Hitcheck\hitcheck.h" />
+    <ClInclude Include="src\game\Player\player.h" />
+    <ClInclude Include="src\game\Scene\scene.h" />
+    <ClInclude Include="src\game\Scene\scenegame.h" />
+    <ClInclude Include="src\game\Scene\sceneresult.h" />
+    <ClInclude Include="src\game\Scene\scenetitle.h" />
+    <ClInclude Include="src\game\Sound\Sound.h" />
+    <ClInclude Include="src\game\Stage\stage.h" />
+    <ClInclude Include="src\game\Trap\Trap.h" />
+    <ClInclude Include="src\game\Trap\TrapManager.h" />
     <ClInclude Include="src\lib\collision.h" />
     <ClInclude Include="src\lib\debug.h" />
     <ClInclude Include="src\lib\fade.h" />

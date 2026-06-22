@@ -1,6 +1,6 @@
 #pragma once
-#include "../common.h"
-#include "../lib/input.h"
+#include "../../common.h"
+#include "../../lib/input.h"
 #include <DxLib.h>
 
 #define GRAPH_NUM		(12)	// ‘S‰æ‘œ”

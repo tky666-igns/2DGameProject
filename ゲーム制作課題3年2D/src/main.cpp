@@ -1,5 +1,5 @@
 #include <DxLib.h>
-#include "game/scene.h"
+#include "game/Scene/scene.h"
 #include "lib/input.h"
 #include "lib/debug.h"
 
@@ -24,7 +24,8 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SceneMana g_sm;
 	Fps g_fps;
-
+	FADE g_fade;
+	g_fade.Init();
 	g_fps.Init();
 
 	//ゲームメインループ
@@ -39,7 +40,7 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		// ゲーム本体の命令はこれより下に書く
 		// 計算処理
-		if (g_sm.Loop() == 1)break;
+		g_sm.Step();
 		g_fps.Step();
 		// 描画処理
 		g_sm.Draw();

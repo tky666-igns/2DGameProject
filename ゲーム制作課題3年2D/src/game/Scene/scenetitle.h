@@ -1,9 +1,9 @@
 #pragma once
 #include <DxLib.h>
-#include "../lib/fade.h"
-#include "../common.h"
-#include"../lib/input.h"
-#include "Sound.h"
+#include "../../lib/fade.h"
+#include "../../common.h"
+#include"../../lib/input.h"
+#include "../Sound/Sound.h"
 
 class SceneTitle
 {
@@ -23,12 +23,10 @@ private:
 	Sound m_sound;
 	int m_hdl;
 public:
-	// コンストラクタ
-	SceneTitle();
-	// デストラクタ
-	~SceneTitle();
+	// 初期化
+	void Init();
 	// 実行処理
-	int Loop();
+	int Step();
 	// 描画処理
 	void Draw();
 };

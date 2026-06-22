@@ -8,14 +8,8 @@ void Scene::Init() {
 	m_endWaitCount = END_WAIT;
 }
 
-// デストラクタ
-Scene::~Scene()
-{
-	Exit();
-}
-
 // 実行処理
-int Scene::Loop()
+int Scene::Step()
 {
 	switch (m_state)
 	{
@@ -44,8 +38,7 @@ int Scene::Loop()
 		//当たり判定処理
 		m_hit.HitCheckPlayerToStage();
 
-		if (m_hit.HitCheckPlayerToStage() == true
-			|| m_hit.HitCheckPlayerToTrap() == true)
+		if ( m_hit.HitCheckPlayerToTrap() == true)
 		{
 			m_endWaitCount = END_WAIT;
 			m_fade.RequestFadeOut();
@@ -56,43 +49,29 @@ int Scene::Loop()
 		if (m_fade.IsEndFadeOut()) {
 			m_state = END;
 		}
-
+		m_endWaitCount--;
 		break;
 	case END:
 		m_stage.Exit();
 		m_player.Exit();
 		m_state = INIT;
-		return m_res;
+		return 1;
 		break;
 	}
 
 	return 0;
 }
 
-// ロード
-void Scene::Load()
-{
-	m_player.Load();
-	m_stage.Load();
-}
-
-// メイン処理
-void Scene::Step()
-{
-
-}
-
-// 終了前処理
-void Scene::Exit()
-{
-	m_player.Exit();
-	m_stage.Exit();
-}
-
 // 描画処理
 void Scene::Draw()
 {
-	m_player.Draw();
-	m_stage.Draw();
+	switch (m_state)
+	{
+	case MAIN:
+	case ENDWAIT:
+		m_player.Draw();
+		m_stage.Draw();
+		break;
+	}
 }
 

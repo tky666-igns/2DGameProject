@@ -5,7 +5,7 @@ void SceneResult::Init()
 	m_state = INIT;
 }
 
-int SceneResult::Loop() 
+int SceneResult::Step() 
 {
 	int result = 0;
 
@@ -52,7 +52,7 @@ int SceneResult::Loop()
 		// ”jŠü
 		m_sound.StopAllSound();
 		m_state = SceneResult::INIT;
-		result = 0;;
+		result = 0;
 	}
 
 	return result;
