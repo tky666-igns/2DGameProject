@@ -1,69 +1,74 @@
 #include "sceneresult.h"
 
-void SceneResult::Init()
+
+SceneResult::SceneResult()
 {
-	m_state = INIT;
+	SceneResult::Init();
 }
 
-int SceneResult::Step() 
+SceneResult::~SceneResult()
 {
+	Exit();
+}
+
+
+
+int SceneResult::Loop() 
+{
+	int result = -1;
+
 	switch (m_state)
 	{
 	case SceneResult::INIT:
-		m_hdl = -1;
+		Init();
 		m_state = SceneResult::LOAD;
 		break;
 	case SceneResult::LOAD:
-		if (m_hdl == -1)
-		{
-			m_hdl = LoadGraph("data/game/RESULT.png");
-		}
+		Load();
 		m_sound.RequestSound(Sound::BGM_TITLE, DX_PLAYTYPE_LOOP);
 		// フェードイン開始
-		m_fade.RequestFadeIn();
+		RequestFadeIn();
 		m_state = SceneResult::STARTWAIT;
 		break;
 	case SceneResult::STARTWAIT:
-		if (m_fade.IsEndFadeIn() == true)
+		Step();
+		if (IsEndFadeIn())
 		{
 			m_state = SceneResult::MAIN;
 		}
 		break;
 	case SceneResult::MAIN:
-		if (m_in.IsInputTrg(KEY_SHOT))
+		Step();
+		if (IsInputTrg(KEY_SHOT))
 		{
-			m_fade.RequestFadeOut();
+			RequestFadeOut();
 			m_state = SceneResult::ENDWAIT;
 		}
 		break;
 	case SceneResult::ENDWAIT:
-		if (m_fade.IsEndFadeOut() == true)
+		if (IsEndFadeOut())
 		{
 			m_state = SceneResult::END;
 		}
 		break;
 	case SceneResult::END:
-
-		if (m_hdl != -1) 
-		{
-			DeleteGraph(m_hdl);
-			m_hdl = -1;
-		}
+		Exit();
 		// 破棄
 		m_sound.StopAllSound();
 		m_state = SceneResult::INIT;
-		return 1;
+		result = 0;
+		break;
 	}
 
-	return 0;
+	return result;
 }
 
 void SceneResult::Draw() {
 	switch (m_state)
 	{
-	case STARTWAIT:
-	case MAIN:
-	case ENDWAIT:
+	case SceneResult::STARTWAIT:
+	case SceneResult::MAIN:
+	case SceneResult::ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "次のシーンへ(Z)");
 		DrawRotaGraph((int)(WINDOW_SIZE_X / 1.3),
 			(int)WINDOW_SIZE_Y / 1.3, 1.0f, 0.0f, m_hdl, TRUE);
@@ -71,4 +76,30 @@ void SceneResult::Draw() {
 	}
 }
 
+void SceneResult::Init()
+{
+	m_state = INIT;
+	m_hdl = -1;
+}
 
+void SceneResult::Load()
+{
+	if (m_hdl == -1)
+	{
+		m_hdl = LoadGraph("data/game/RESULT.png");
+	}
+}
+
+void SceneResult::Step()
+{
+
+}
+
+void SceneResult::Exit()
+{
+	if (m_hdl != -1)
+	{
+		DeleteGraph(m_hdl);
+		m_hdl = -1;
+	}
+}

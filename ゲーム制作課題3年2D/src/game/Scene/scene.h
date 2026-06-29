@@ -21,12 +21,11 @@ private:
 	Scene m_game;
 	SceneResult m_res;
 	Sound m_sound;
-	FADE m_fade;
 
 	tagScene m_sceneID;
 public:
 	void Init();
-	int Step();
+	int Loop();
 	void Draw();
 };
 

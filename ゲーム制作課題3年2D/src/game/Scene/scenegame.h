@@ -14,27 +14,41 @@ static const int END_WAIT = 60;
 class Scene
 {
 private:
-	enum tagSceneGame {
-		INIT,		// 初期化
-		LOAD,		// データロード
-		STARTWAIT,
-		MAIN,		// メイン処理
-		ENDWAIT,
-		END,		// 終了処理
+	enum tagScene	{
+		INIT,		// データ初期化
+		LOAD,		// データ読み込み
+		STARTWAIT,	// 開始前の演出
+		MAIN,		// ゲーム本編実行
+		ENDWAIT,	// 終了前の演出
+		END,		// 終了前のデータ破棄
 
 		NUM
 	};
-	tagSceneGame m_state;
+	tagScene m_state;
 	int m_res;
 	int m_endWaitCount;
 	Sound m_sound;
-	FADE m_fade;
 	Player m_player;
 	Stage m_stage;
 	Hit m_hit;
 public:
-	int Step();
+	// コンストラクタ・デストラクタ
+	Scene();
+	~Scene();
+
+	// 実行処理
+	int Loop();
+	// 描画処理
 	void Draw();
+
+private:
+	// 初期化
 	void Init();
+	// データロード
+	void Load();
+	// メイン処理
+	void Step();
+	// 終了前処理
+	void Exit();
 
 };

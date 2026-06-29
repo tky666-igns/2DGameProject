@@ -2,64 +2,65 @@
 
 
 
-// 初期化処理
-void Scene::Init() {
+Scene::Scene()
+{
 	m_state = INIT;
-	m_endWaitCount = END_WAIT;
 }
 
-// 実行処理
-int Scene::Step()
+Scene::~Scene()
 {
+	Exit();
+}
+
+
+// 実行処理
+int Scene::Loop()
+{
+	int result = -1;
+
 	switch (m_state)
 	{
-	case INIT:
-		m_stage.Init();
-		m_player.Init();
-		m_endWaitCount = 0;
+	case Scene::INIT:
+		Init();
 		m_state = LOAD;
 		break;
-	case LOAD:
-		m_stage.Load();
-		m_player.Load();
-		m_fade.RequestFadeIn();
-		m_state = MAIN;
+	case Scene::LOAD:
+		Load();
+		m_sound.RequestSound(Sound::BGMID_GAME, DX_PLAYTYPE_LOOP);
+		RequestFadeIn();
+		m_state = Scene::MAIN;
 		break;
-	case STARTWAIT:
-		if (m_fade.IsEndFadeIn())
+	case Scene::STARTWAIT:
+		if (IsEndFadeIn())
 		{
-			m_sound.RequestSound(Sound::BGMID_GAME, DX_PLAYTYPE_LOOP);
-			m_state = MAIN;
+			m_state = Scene::MAIN;
 		}
 		break;
-	case MAIN:
-		m_stage.Update();
-		m_player.Update();
+	case Scene::MAIN:
+		Step();
 		//当たり判定処理
 		m_hit.HitCheckPlayerToStage();
 
 		if ( m_hit.HitCheckPlayerToTrap() == true)
 		{
 			m_endWaitCount = END_WAIT;
-			m_fade.RequestFadeOut();
-			m_state = ENDWAIT;
+			RequestFadeOut();
+			m_state = Scene::ENDWAIT;
 		}
 		break;
-	case ENDWAIT:
-		if (m_fade.IsEndFadeOut()) {
-			m_state = END;
+	case Scene::ENDWAIT:
+		if (IsEndFadeOut()) {
+			m_state = Scene::END;
 		}
 		m_endWaitCount--;
 		break;
-	case END:
-		m_stage.Exit();
-		m_player.Exit();
-		m_state = INIT;
-		return 1;
+	case Scene::END:
+		m_state = Scene::INIT;
+		result = 0;
 		break;
 	}
 
-	return 0;
+	return result;
 }
 
 // 描画処理
@@ -67,11 +68,42 @@ void Scene::Draw()
 {
 	switch (m_state)
 	{
-	case MAIN:
-	case ENDWAIT:
+	case Scene::STARTWAIT:
+	case Scene::MAIN:
+	case Scene::ENDWAIT:
 		m_player.Draw();
 		m_stage.Draw();
 		break;
 	}
+}
+
+// 初期化
+void Scene::Init()
+{
+	m_stage.Init();
+	m_player.Init();
+	m_endWaitCount = 0;
+	m_endWaitCount = END_WAIT;
+}
+
+// データロード
+void Scene::Load()
+{
+	m_stage.Load();
+	m_player.Load();
+}
+
+// メイン処理
+void Scene::Step()
+{
+	m_stage.Update();
+	m_player.Update();
+}
+
+// 終了前処理
+void Scene::Exit()
+{
+	m_stage.Exit();
+	m_player.Exit();
 }
 

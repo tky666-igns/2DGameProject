@@ -64,14 +64,14 @@ void Player::Update()
 	switch (m_state) {
 	case PLAYER_WAIT:
 		// 右移動
-		if (m_nowKey.IsInputRep(KEY_RIGHT))
+		if (IsInputRep(KEY_RIGHT))
 		{
 			m_state = PLAYER_MOVE;
 			m_dir = RIGHT;
 			m_pos.x += PLAYER_SPD;
 		}
 		// 左移動
-		else if (m_nowKey.IsInputRep(KEY_LEFT))
+		else if (IsInputRep(KEY_LEFT))
 		{
 			m_state = PLAYER_MOVE;
 			m_dir = LEFT;
@@ -83,7 +83,7 @@ void Player::Update()
 			m_state = PLAYER_WAIT;
 		};
 		// ジャンプ
-		if (m_nowKey.IsInputTrg(KEY_UP))
+		if (IsInputTrg(KEY_UP))
 		{
 			m_state = PLAYER_JUMP;
 			m_jumpPow = PLAYER_JUMP_POW;
@@ -91,14 +91,14 @@ void Player::Update()
 		break;
 	case PLAYER_MOVE:
 		// 右移動
-		if (m_nowKey.IsInputRep(KEY_RIGHT))
+		if (IsInputRep(KEY_RIGHT))
 		{
 			m_state = PLAYER_MOVE;
 			m_dir = RIGHT;
 			m_pos.x += PLAYER_SPD;
 		}
 		// 左移動
-		else if (m_nowKey.IsInputRep(KEY_LEFT))
+		else if (IsInputRep(KEY_LEFT))
 		{
 			m_state = PLAYER_MOVE;
 			m_dir = LEFT;
@@ -110,7 +110,7 @@ void Player::Update()
 			m_state = PLAYER_WAIT;
 		}
 		// ジャンプ
-		if (m_nowKey.IsInputTrg(KEY_UP))
+		if (IsInputTrg(KEY_UP))
 		{
 			m_state = PLAYER_JUMP;
 			m_jumpPow = PLAYER_JUMP_POW;
@@ -118,12 +118,12 @@ void Player::Update()
 		break;
 	case PLAYER_JUMP:
 		// 左右移動ではあるが、状態はジャンプから変更させない
-		if (m_nowKey.IsInputRep(KEY_RIGHT))
+		if (IsInputRep(KEY_RIGHT))
 		{
 			m_dir = RIGHT;
 			m_pos.x += PLAYER_SPD;
 		}
-		else if (m_nowKey.IsInputRep(KEY_LEFT))
+		else if (IsInputRep(KEY_LEFT))
 		{
 			m_dir = LEFT;
 			m_pos.x -= PLAYER_SPD;

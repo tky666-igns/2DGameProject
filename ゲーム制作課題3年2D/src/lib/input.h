@@ -7,19 +7,12 @@
 #define KEY_LEFT		(0b1000)	//左ボタン
 #define KEY_SHOT		(0b10000)	//弾発射ボタン
 
-class Input
-{
-public:
-	unsigned int m_nowKey;	// 今回入力したキー
-	unsigned int m_preKey;	// 前回入力したキー
 
-	//キー入力情報の初期化
-	void InitInput();
-	//キー入力情報を更新
-	void UpdateInput();
-	//キーを押したか（通常判定）
-	bool IsInputRep(unsigned int key);
-	//キーを押したか（トリガー判定）
-	bool IsInputTrg(unsigned int key);
-
-};
+//キー入力情報の初期化
+void InitInput();
+//キー入力情報を更新
+void UpdateInput();
+//キーを押したか（通常判定）
+bool IsInputRep(unsigned int key);
+//キーを押したか（トリガー判定）
+bool IsInputTrg(unsigned int key);

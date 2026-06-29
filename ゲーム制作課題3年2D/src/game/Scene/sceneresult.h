@@ -8,29 +8,39 @@
 class SceneResult
 {
 private:
-	enum tagSceneRESULT {
-		INIT,
-		LOAD,
-		STARTWAIT,
-		MAIN,
-		ENDWAIT,
-		END,
+	enum tagScene {
+		INIT,		// データ初期化
+		LOAD,		// データ読み込み
+		STARTWAIT,	// 開始前の演出
+		MAIN,		// ゲーム本編実行
+		ENDWAIT,	// 終了前の演出
+		END,		// 終了前のデータ破棄
 
 		NUM
 	};
-	tagSceneRESULT m_state;
-	FADE m_fade;
+	tagScene m_state;
 	Sound m_sound;
-	Input m_in;
 	int m_hdl;
 
 public:
-	// 初期化
-	void Init();
+	// コンストラクタ・デストラクタ
+	SceneResult();
+	~SceneResult();
+
 	// 実行処理
-	int Step();
+	int Loop();
 	// 描画処理
 	void Draw();
+
+private:
+	//初期化
+	void Init();
+	//画像読み込み
+	void Load();
+	//毎フレーム処理
+	void Step();
+	//終了
+	void Exit();
 };
 
 

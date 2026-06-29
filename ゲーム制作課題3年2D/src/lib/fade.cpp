@@ -1,92 +1,110 @@
 #include "fade.h"
 
+// フェード各種状態
+enum tagFadeState
+{
+	FADE_NON,		// フェードなし
+	FADE_IN,		// フェードイン中
+	FADE_OUT,		// フェードアウト中（徐々に画面が消える）
+	FADE_OUT_WAIT,	// フェードアウト後の真っ暗状態
+};
 
+typedef struct
+{
+	tagFadeState m_state;	//現在のフェード状況
+	int  m_count;			//フェード時間のカウント
+}FADE_DATA;
 
+FADE_DATA g_fade;
 
 //	フェード初期化
-void FADE::Init()
+void InitFade()
 {
-	m_state = FADE_NON;
-	m_count = 0;
+	g_fade.m_state = FADE_NON;
+	g_fade.m_count = 0;
 }
 
-//	フェード更新
-void FADE::Update()
+//フェード処理更新
+void StepFade()
 {
-	switch (m_state)
+	//状態に合わせて行動変化
+	//実際に処理をするのは下記の二つだけ
+	switch (g_fade.m_state)
 	{
 	case FADE_IN:
-		m_count -= FADE_SPD;
-		if (m_count <= 0)
+		//徐々に明るくするので、数値は減らす
+		g_fade.m_count -= FADE_SPD;
+		//０まで来たらフェードイン修了
+		if (g_fade.m_count <= 0)
 		{
-			m_count = 0;
-			m_state = FADE_NON;
+			g_fade.m_count = 0;			//安全策
+			g_fade.m_state = FADE_NON;
 		}
 		break;
 	case FADE_OUT:
-		m_count += FADE_SPD;
-		if (m_count >= 255)
+		//徐々に暗くするので、数値は増やす
+		g_fade.m_count += FADE_SPD;
+		//２５５まで来たらフェードアウト終了
+		if (g_fade.m_count >= 255)
 		{
-			m_count = 255;
-			m_state = FADE_OUT_WAIT;
+			g_fade.m_count = 255;		//安全策
+			g_fade.m_state = FADE_OUT_WAIT;
 		}
 		break;
 	}
 }
 
-//	フェード描画
-void FADE::Draw()
+//フェード用の画像描画
+void DrawFade()
 {
-	switch (m_state)
+	//黒画像を描画
+	switch (g_fade.m_state)
 	{
 	case FADE_IN:
 	case FADE_OUT:
 	case FADE_OUT_WAIT:
-		// ここでアルファ値をセットする
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, m_count);
-		// フェード用の黒い四角を表示
+		//アルファ値を調整する
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, g_fade.m_count);
+
+		//フェード用の黒い四角を表示
 		DrawBox(0, 0, FADE_SIZE_X, FADE_SIZE_Y,
 			GetColor(0, 0, 0), TRUE);
-		// 他に影響を及ぼさないように、ここで設定を無効にする
+
+		//使い終わったら元に戻す
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 		break;
 	}
 }
 
-
-//	フェードインリクエスト
-void FADE::RequestFadeIn()
+//フェードイン呼び出し
+void RequestFadeIn()
 {
-	// 徐々に明るくするので、最初はMAXに
-	m_count = 255;
-	m_state = FADE_IN;
+	g_fade.m_state = FADE_IN;
+	g_fade.m_count = 255;
 }
 
-//	フェードアウトリクエスト
-void FADE::RequestFadeOut()
+//フェードアウト呼び出し
+void RequestFadeOut()
 {
-	m_count = 0;
-	m_state = FADE_OUT;
+	g_fade.m_state = FADE_OUT;
+	g_fade.m_count = 0;
 }
 
-//	フェードインが終了したか
-bool FADE::IsEndFadeIn()
+//フェードインが終了しているか
+bool IsEndFadeIn()
 {
-	if (m_state == FADE_IN)
-	{
+	if (g_fade.m_state == FADE_IN)
 		return false;
-	}
 	else
 		return true;
 }
 
-//	フェードアウトが終了したか
-bool FADE::IsEndFadeOut()
+//フェードアウトが終了しているか
+bool IsEndFadeOut()
 {
-	if (m_state == FADE_OUT)
-	{
+	if (g_fade.m_state == FADE_OUT)
 		return false;
-	}
 	else
 		return true;
 }
+

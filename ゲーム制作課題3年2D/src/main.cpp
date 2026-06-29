@@ -24,10 +24,10 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SceneMana g_sm;
 	Fps g_fps;
-	FADE g_fade;
 	g_sm.Init();
-	g_fade.Init();
 	g_fps.Init();
+
+	InitInput();
 
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
@@ -41,7 +41,8 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		// ゲーム本体の命令はこれより下に書く
 		// 計算処理
-		g_sm.Step();
+		UpdateInput();
+		g_sm.Loop();
 		g_fps.Step();
 		// 描画処理
 		g_sm.Draw();
