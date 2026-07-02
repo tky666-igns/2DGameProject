@@ -3,7 +3,7 @@
 
 SceneResult::SceneResult()
 {
-	SceneResult::Init();
+	m_state = INIT;
 }
 
 SceneResult::~SceneResult()
@@ -25,7 +25,7 @@ int SceneResult::Loop()
 		break;
 	case SceneResult::LOAD:
 		Load();
-		m_sound.RequestSound(Sound::BGM_TITLE, DX_PLAYTYPE_LOOP);
+		Sound::Play(Sound::BGM_TITLE, DX_PLAYTYPE_LOOP);
 		// フェードイン開始
 		RequestFadeIn();
 		m_state = SceneResult::STARTWAIT;
@@ -54,7 +54,7 @@ int SceneResult::Loop()
 	case SceneResult::END:
 		Exit();
 		// 破棄
-		m_sound.StopAllSound();
+		Sound::AllStop();
 		m_state = SceneResult::INIT;
 		result = 0;
 		break;

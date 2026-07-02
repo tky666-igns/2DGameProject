@@ -22,11 +22,11 @@ int Scene::Loop()
 	{
 	case Scene::INIT:
 		Init();
-		m_state = LOAD;
+		m_state = Scene::LOAD;
 		break;
 	case Scene::LOAD:
 		Load();
-		m_sound.RequestSound(Sound::BGMID_GAME, DX_PLAYTYPE_LOOP);
+		Sound::Play(Sound::BGMID_GAME, DX_PLAYTYPE_LOOP);
 		RequestFadeIn();
 		m_state = Scene::MAIN;
 		break;
@@ -41,7 +41,7 @@ int Scene::Loop()
 		//ìñÇΩÇËîªíËèàóù
 		m_hit.HitCheckPlayerToStage();
 
-		if ( m_hit.HitCheckPlayerToTrap() == true)
+		if ( m_hit.HitCheckPlayerToTrap() == true || IsInputTrg(KEY_SHOT))
 		{
 			m_endWaitCount = END_WAIT;
 			RequestFadeOut();
@@ -55,6 +55,8 @@ int Scene::Loop()
 		m_endWaitCount--;
 		break;
 	case Scene::END:
+		Exit();
+		Sound::AllStop();
 		m_state = Scene::INIT;
 		result = 0;
 		break;
@@ -71,6 +73,7 @@ void Scene::Draw()
 	case Scene::STARTWAIT:
 	case Scene::MAIN:
 	case Scene::ENDWAIT:
+		DrawFormatString(20, 20, WHITE, "GAMEéüÇÃÉVÅ[ÉìÇ÷(Z)");
 		m_player.Draw();
 		m_stage.Draw();
 		break;

@@ -13,23 +13,30 @@ public:
 
 		SOUND_NUM
 	};
-	int m_hdl[SOUND_NUM];
+private:
+
+	static int m_hdl[SOUND_NUM];
+
+public:
 	//データを初期化
-	void Init();
+	static void Init();
 
 	//音楽データをロード
-
-	void Load();
+	static void Load();
 
 	//終了前に行う
-	void Exit();
+	static void Exit();
 
 	//音の再生要請
-	void RequestSound(int soundID, int type);
+	static bool Play(tagSound id, int type = DX_PLAYTYPE_BACK,
+				bool isStart = true);
 
 	//音の停止要請
-	void StopSound(int soundID);
+	static void Stop(tagSound id);
 
 	//すべての音の停止要請
-	void StopAllSound();
+	static void AllStop();
+
+	// 再生中か
+	static bool IsPlay(tagSound id);
 };

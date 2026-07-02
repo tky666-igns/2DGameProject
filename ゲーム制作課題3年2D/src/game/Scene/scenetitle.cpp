@@ -28,7 +28,7 @@ int SceneTitle::Loop()
 	case SceneTitle::LOAD:
 		Load();
 		// BGM鳴らす
-		m_sound.RequestSound(m_sound.BGM_TITLE, DX_PLAYTYPE_LOOP);
+		Sound::Play(Sound::BGM_TITLE, DX_PLAYTYPE_LOOP);
 		// フェードイン開始
 		RequestFadeIn();
 		m_state = SceneTitle::STARTWAIT;
@@ -61,7 +61,7 @@ int SceneTitle::Loop()
 	case SceneTitle::END:
 		Exit();
 		// 音楽止めて次へ
-		m_sound.StopAllSound();
+		Sound::AllStop();
 		m_state = SceneTitle::INIT;
 		result = 0;	// ゲームの終了を知らせる
 		break;
