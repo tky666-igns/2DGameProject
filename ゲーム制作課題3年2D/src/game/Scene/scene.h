@@ -10,9 +10,9 @@ class SceneMana
 {
 private:
 	enum tagScene {
-		SCENE_TITLE,
-		SCENE_GAME,
-		SCENE_RESULT,
+		SCENE_TITLE,	// タイトル画面
+		SCENE_GAME,		// ゲーム本編
+		SCENE_RESULT,	// リザルト画面
 
 		SCENE_NUM
 	};

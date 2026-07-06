@@ -4,6 +4,7 @@
 SceneResult::SceneResult()
 {
 	m_state = INIT;
+	Init();
 }
 
 SceneResult::~SceneResult()

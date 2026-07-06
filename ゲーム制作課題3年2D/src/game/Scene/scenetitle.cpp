@@ -5,6 +5,7 @@
 SceneTitle::SceneTitle()
 {
 	m_state = INIT;
+	Init();
 }
 
 SceneTitle::~SceneTitle()

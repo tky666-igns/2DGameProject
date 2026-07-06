@@ -1,6 +1,6 @@
 #pragma once
-#include "../Stage/stage.h"
 #include <DxLib.h>
+#include "../Stage/stage.h"
 #include "../../lib/fade.h"
 #include "../../common.h"
 #include"../../lib/input.h"
@@ -25,7 +25,6 @@ private:
 		NUM
 	};
 	tagScene m_state;
-	int m_res;
 	int m_endWaitCount;
 	Sound m_sound;
 	Player m_player;

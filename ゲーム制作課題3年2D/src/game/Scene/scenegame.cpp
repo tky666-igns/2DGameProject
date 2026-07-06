@@ -5,6 +5,7 @@
 Scene::Scene()
 {
 	m_state = INIT;
+	Init();
 }
 
 Scene::~Scene()
@@ -85,6 +86,7 @@ void Scene::Init()
 {
 	m_stage.Init();
 	m_player.Init();
+	m_sound.Init();
 	m_endWaitCount = 0;
 	m_endWaitCount = END_WAIT;
 }

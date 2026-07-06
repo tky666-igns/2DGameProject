@@ -79,22 +79,24 @@ void DrawFade()
 //フェードイン呼び出し
 void RequestFadeIn()
 {
-	g_fade.m_state = FADE_IN;
 	g_fade.m_count = 255;
+	g_fade.m_state = FADE_IN;
 }
 
 //フェードアウト呼び出し
 void RequestFadeOut()
 {
-	g_fade.m_state = FADE_OUT;
 	g_fade.m_count = 0;
+	g_fade.m_state = FADE_OUT;
 }
 
 //フェードインが終了しているか
 bool IsEndFadeIn()
 {
 	if (g_fade.m_state == FADE_IN)
+	{
 		return false;
+	}
 	else
 		return true;
 }
@@ -103,7 +105,9 @@ bool IsEndFadeIn()
 bool IsEndFadeOut()
 {
 	if (g_fade.m_state == FADE_OUT)
+	{
 		return false;
+	}
 	else
 		return true;
 }

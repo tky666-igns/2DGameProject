@@ -68,6 +68,7 @@ void Stage::Load()
 //-------------------------------
 void Stage::Update()
 {
+
 }
 
 
