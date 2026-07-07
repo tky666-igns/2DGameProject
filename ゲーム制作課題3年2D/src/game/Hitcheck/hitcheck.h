@@ -19,6 +19,5 @@ public:
 	bool HitCheckPlayerToTrap();
 
 	Player m_player;
-	Stage m_stage;
 	Trap m_trap;
 };

@@ -1,6 +1,9 @@
 #include "hitcheck.h"
 
 
+extern STAGE_DATA g_stage;
+
+
 // プレイヤーとステージオブジェクトの当たり判定
 bool Hit::HitCheckPlayerToStage()
 {
@@ -12,15 +15,15 @@ bool Hit::HitCheckPlayerToStage()
 		for (int x = 0; x < STAGE_X; x++)
 		{
 			//調べている場所がブロックでなければ次へ進む
-			if (m_stage.m_stageData[y][x].m_state != STAGEID_BLOCK)
+			if (g_stage.m_stageData[y][x].m_state != STAGEID_BLOCK)
 			{
 				continue;
 			}
 			//プレイヤーとマップを矩形同士の当たり判定で調べる
 			bool isHit = CheckHitSquareToSquare(m_player.m_pos,
 				PLAYER_SIZE_X, PLAYER_SIZE_Y,
-				m_stage.m_stageData[y][x].m_pos,
-				OBJECT_SIZE_X, OBJECT_SIZE_Y);
+				g_stage.m_stageData[y][x].m_pos,
+				OBJECT_SIZE_X,OBJECT_SIZE_Y);
 			//当たっていないブロックなら次へ
 			if (isHit == false)
 			{
@@ -39,8 +42,8 @@ bool Hit::HitCheckPlayerToStage()
 
 			//めり込んだ距離を計算する
 			//プレイヤーと物体の距離を計算する
-			float lenX = m_player.m_pos.x - m_stage.m_stageData[y][x].m_pos.x;
-			float lenY = m_player.m_pos.y - m_stage.m_stageData[y][x].m_pos.y;
+			float lenX = m_player.m_pos.x - g_stage.m_stageData[y][x].m_pos.x;
+			float lenY = m_player.m_pos.y - g_stage.m_stageData[y][x].m_pos.y;
 
 			lenX = fabsf(lenX);
 			lenY = fabsf(lenY);
@@ -58,7 +61,7 @@ bool Hit::HitCheckPlayerToStage()
 			if (lenX < lenY)
 			{
 				//押し戻す方向にブロックがなければ横に押し戻す
-				if (m_stage.m_stageData[y][x + posX].m_state != STAGEID_BLOCK)
+				if (g_stage.m_stageData[y][x + posX].m_state != STAGEID_BLOCK)
 				{
 					//posXをかけることにより左右の+-が正しく設定される
 					lenX *= posX;
@@ -66,7 +69,7 @@ bool Hit::HitCheckPlayerToStage()
 					m_player.m_pos.x += lenX;
 				}
 				//横がダメだったときは第二候補の上下で押し戻す
-				else if (m_stage.m_stageData[y + posY][x].m_state != STAGEID_BLOCK)
+				else if (g_stage.m_stageData[y + posY][x].m_state != STAGEID_BLOCK)
 				{
 					//posYをかけることにより上下の+-が正しく設定される
 					lenY *= posY;
@@ -85,7 +88,7 @@ bool Hit::HitCheckPlayerToStage()
 			else
 			{
 				//押し戻す方向にブロックがなければ横に押し戻す
-				if (m_stage.m_stageData[y + posY][x].m_state != STAGEID_BLOCK)
+				if (g_stage.m_stageData[y + posY][x].m_state != STAGEID_BLOCK)
 				{
 					//posXをかけることにより左右の+-が正しく設定される
 					lenY *= posY;
@@ -99,7 +102,7 @@ bool Hit::HitCheckPlayerToStage()
 					}
 				}
 				//横がダメだったときは第二候補の上下で押し戻す
-				else if (m_stage.m_stageData[y][x + posX].m_state != STAGEID_BLOCK)
+				else if (g_stage.m_stageData[y][x + posX].m_state != STAGEID_BLOCK)
 				{
 					//posYをかけることにより上下の+-が正しく設定される
 					lenX *= posX;

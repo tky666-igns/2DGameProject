@@ -76,7 +76,7 @@ void Scene::Draw()
 	case Scene::ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "GAME次のシーンへ(Z)");
 		m_player.Draw();
-		m_stage.Draw();
+		DrawStage();
 		break;
 	}
 }
@@ -84,7 +84,7 @@ void Scene::Draw()
 // 初期化
 void Scene::Init()
 {
-	m_stage.Init();
+	InitStage();
 	m_player.Init();
 	m_sound.Init();
 	m_endWaitCount = 0;
@@ -94,21 +94,21 @@ void Scene::Init()
 // データロード
 void Scene::Load()
 {
-	m_stage.Load();
+	LoadStage();
 	m_player.Load();
 }
 
 // メイン処理
 void Scene::Step()
 {
-	m_stage.Update();
+	UpdateStage();
 	m_player.Update();
 }
 
 // 終了前処理
 void Scene::Exit()
 {
-	m_stage.Exit();
+	ExitStage();
 	m_player.Exit();
 }
 

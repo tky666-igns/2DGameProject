@@ -4,29 +4,28 @@
 #include "../../common.h"
 #include "../Player/player.h"
 
-class Object
-{
-public:
+// ステージオブジェクト構造体
+typedef struct {
 	VECTOR m_pos;	// 座標
 	int m_state;	// ステージデータ　0=床・壁　1=宝箱　-1=何もなし
+}OBJECT_DATA;
 
-};
-class Stage : public::Object
-{
-public:
-	Player m_player;
-	Object m_stageData[STAGE_Y][STAGE_X];
-	int m_graphHdl[STAGEID_NUM];		// 画像ハンドル
-	// ステージ初期化
-	void Init();
-	// ステージロード
-	void Load();
-	// ステージ更新
-	void Update();
-	// ステージ描画
-	void Draw();
-	// ステージ破棄
-	void Exit();
+// ステージデータ構造体
+typedef struct {
+	OBJECT_DATA m_stageData[STAGE_Y][STAGE_X];
+	int m_graphHndl[STAGEID_NUM];		// 画像ハンドル
+}STAGE_DATA;
 
-};
+Player g_player;
+
+//		ステージ初期化
+void InitStage();
+//		ステージロード
+void LoadStage();
+//		ステージ更新
+void UpdateStage();
+//		ステージ描画
+void DrawStage();
+//		ステージ破棄
+void ExitStage();
 

@@ -28,7 +28,6 @@ private:
 	int m_endWaitCount;
 	Sound m_sound;
 	Player m_player;
-	Stage m_stage;
 	Hit m_hit;
 public:
 	// コンストラクタ・デストラクタ
