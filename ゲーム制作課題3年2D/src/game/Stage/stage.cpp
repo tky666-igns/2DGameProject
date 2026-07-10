@@ -25,7 +25,7 @@ void InitStage()
 	// ‰æ‘œŠÖ˜A
 	for (int i = 0; i < STAGEID_NUM; i++)
 	{
-		g_stage.m_graphHndl[i] = -1;
+		g_stage.m_graphHdl[i] = -1;
 	}
 }
 
@@ -60,7 +60,7 @@ void LoadStage()
 	};
 	for (int i = 0; i < STAGEID_NUM; i++)
 	{
-		g_stage.m_graphHndl[i] = LoadGraph(graphName[i]);
+		g_stage.m_graphHdl[i] = LoadGraph(graphName[i]);
 	}
 	//---------------------------------------------------------
 }
@@ -88,7 +88,7 @@ void DrawStage()
 			int posX = (int)(g_stage.m_stageData[y][x].m_pos.x - offset.x);
 			int posY = (int)(g_stage.m_stageData[y][x].m_pos.y - offset.y);
 			DrawRotaGraph(posX, posY, 1.0, 0.0,
-				g_stage.m_graphHndl[g_stage.m_stageData[y][x].m_state], TRUE);
+				g_stage.m_graphHdl[g_stage.m_stageData[y][x].m_state], TRUE);
 		}
 	}
 }
@@ -101,9 +101,9 @@ void ExitStage()
 {
 	for (int i = 0; i < STAGEID_NUM; i++)
 	{
-		if (g_stage.m_graphHndl[i] != -1)
+		if (g_stage.m_graphHdl[i] != -1)
 		{
-			DeleteGraph(g_stage.m_graphHndl[i]);
+			DeleteGraph(g_stage.m_graphHdl[i]);
 		}
 	}
 }

@@ -13,7 +13,7 @@ typedef struct {
 // ステージデータ構造体
 typedef struct {
 	OBJECT_DATA m_stageData[STAGE_Y][STAGE_X];
-	int m_graphHndl[STAGEID_NUM];		// 画像ハンドル
+	int m_graphHdl[STAGEID_NUM];		// 画像ハンドル
 }STAGE_DATA;
 
 Player g_player;
