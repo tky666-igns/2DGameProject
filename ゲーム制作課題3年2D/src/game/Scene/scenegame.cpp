@@ -40,9 +40,9 @@ int Scene::Loop()
 	case Scene::MAIN:
 		Step();
 		//当たり判定処理
-		m_hit.HitCheckPlayerToStage();
+		//m_hit.HitCheckPlayerTo();
 
-		if ( m_hit.HitCheckPlayerToTrap() == true || IsInputTrg(KEY_SHOT))
+		if ( /*m_hit.HitCheckPlayerToTrap() == true */ || IsInputTrg(KEY_SHOT))
 		{
 			m_endWaitCount = END_WAIT;
 			RequestFadeOut();
@@ -76,7 +76,7 @@ void Scene::Draw()
 	case Scene::ENDWAIT:
 		DrawFormatString(20, 20, WHITE, "GAME次のシーンへ(Z)");
 		m_player.Draw();
-		DrawStage();
+		m_stage.Draw();
 		break;
 	}
 }
@@ -84,7 +84,7 @@ void Scene::Draw()
 // 初期化
 void Scene::Init()
 {
-	InitStage();
+	m_stage.Init();
 	m_player.Init();
 	m_sound.Init();
 	m_endWaitCount = 0;
@@ -94,21 +94,21 @@ void Scene::Init()
 // データロード
 void Scene::Load()
 {
-	LoadStage();
+	m_stage.Load();
 	m_player.Load();
 }
 
 // メイン処理
 void Scene::Step()
 {
-	UpdateStage();
+	m_stage.Update();
 	m_player.Update();
 }
 
 // 終了前処理
 void Scene::Exit()
 {
-	ExitStage();
+	m_stage.Exit();
 	m_player.Exit();
 }
 

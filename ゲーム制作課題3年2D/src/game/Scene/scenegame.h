@@ -27,8 +27,9 @@ private:
 	tagScene m_state;
 	int m_endWaitCount;
 	Sound m_sound;
+	Stage m_stage;
 	Player m_player;
-	Hit m_hit;
+	//Hit m_hit;
 public:
 	// コンストラクタ・デストラクタ
 	Scene();
